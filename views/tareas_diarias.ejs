@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema Profesional de Gestión de Tareas Diarias</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f4f7f9;
+            color: #333;
+            padding-top: 60px; /* Espacio para la barra de progreso fija */
+        }
+        .container {
+            max-width: 1200px;
+            margin-top: 30px;
+        }
+        .card {
+            border: none;
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+            border-radius: 0.5rem;
+        }
+        .card-header {
+            background-color: #3498db;
+            color: white;
+            font-weight: bold;
+        }
+        .task-item {
+            border-left: 4px solid #3498db;
+            transition: all 0.3s ease;
+            padding: 1rem;
+        }
+        .task-item.in-progress {
+            background-color: #fef3c7;
+        }
+        .task-item.completed {
+            background-color: #e3fcec;
+            border-left-color: #2ecc71;
+        }
+        .btn-action {
+            padding: 0.25rem 0.5rem;
+            font-size: 0.875rem;
+        }
+        .progress-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1030;
+            background-color: #f8f9fa;
+            padding: 10px 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .progress {
+            height: 10px;
+            border-radius: 5px;
+            background-color: #e9ecef;
+        }
+        .progress-bar {
+            background-color: #3498db;
+            transition: width 0.5s ease;
+        }
+        .progress-stats {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 5px;
+            font-size: 0.9rem;
+            color: #6c757d;
+        }
+        .date-picker {
+            border: 1px solid #ced4da;
+            border-radius: 0.25rem;
+        }
+        .stats-card {
+            background-color: #fff;
+            border-radius: 0.5rem;
+            box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.05);
+        }
+        .chart-container {
+            height: 300px;
+        }
+        .task-text {
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+        .time-info {
+            font-size: 0.875rem;
+            color: #666;
+        }
+        .running-time {
+            font-weight: bold;
+            color: #e74c3c;
+        }
+        .input-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        .input-group input {
+            flex: 1;
+        }
+    </style>
+</head>
+<body>
+    <%- include('navbar') %>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card mb-4">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h4 class="mb-0">Control de Tareas Diarias</h4>
+                        <input type="date" id="datePicker" class="form-control date-picker" style="width: auto;">
+                    </div>
+                    <div class="card-body">
+                        <div id="taskList" class="mb-4">
+                            <!-- Las tareas se insertarán aquí -->
+                        </div>
+                        <div class="progress mb-3">
+                            <div id="progressBar" class="progress-bar bg-success" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <span id="pendingTasks">Tareas pendientes: 19</span>
+                            <span id="completedTasks">Tareas completadas: 0</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card stats-card mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">Estadísticas Semanales</h5>
+                        <div class="chart-container">
+                            <canvas id="weeklyChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="card stats-card">
+                    <div class="card-body">
+                        <h5 class="card-title">Rendimiento General</h5>
+                        <div class="chart-container">
+                            <canvas id="performanceChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+    const tasks = [
+        {name: "Reporte 275", startTime: null, endTime: null, netTime: null, interval: null},
+        {name: "log switch_trace", startTime: null, endTime: null, netTime: null, interval: null},
+        {name: "Switch.WorldLine", startTime: null, endTime: null, netTime: null, interval: null},
+        {name: "log de la recall", startTime: null, endTime: null, netTime: null, interval: null},
+        {name: "WorldLine Recall", startTime: null, endTime: null, netTime: null, interval: null},
+        {name: "Embozado", startTime: null, endTime: null, netTime: null, interval: null},
+        {name: "Mambulogerr", startTime: null, endTime: null, netTime: null, interval: null},
+        {name: "DUMP", startTime: null, endTime: null, netTime: null, interval: null},
+        {name: "archivos procesados", startTime: null, endTime: null, netTime: null, interval: null},
+        {name: "SIN errores en log de infinitus", startTime: null, endTime: null, netTime: null, interval: null},
+        {name: "ipmobsproc error tipo 3", startTime: null, endTime: null, netTime: null, interval: null},
+        {name: "impfilecontrolproc archivos", startTime: null, endTime: null, netTime: null, interval: null},
+        {name: "vista mambulog v/s ipmcontrolmambu", startTime: null, endTime: null, netTime: null, interval: null},
+        {name: "vista ipmfiledeta v/s impcontrolmambu", startTime: null, endTime: null, netTime: null, interval: null},
+        {name: "diferencias: agrupadas, money send y nada que reportar error", startTime: null, endTime: null, netTime: null, interval: null},
+        {name: "Errores 400", startTime: null, endTime: null, netTime: null, interval: null},
+        {name: "casos a reportar en revision Vista CONTROL_T2001 PDTE", startTime: null, endTime: null, netTime: null, interval: null},
+        {name: "2001 chile", startTime: null, endTime: null, netTime: null, interval: null},
+        {name: "2001 peru", startTime: null, endTime: null, netTime: null, interval: null}
+    ];
+
+    let completedTasks = [];
+    let weeklyData = [0, 0, 0, 0, 0, 0, 0];
+    let weeklyChart, performanceChart;
+
+    function renderTasks() {
+        const taskList = document.getElementById('taskList');
+        taskList.innerHTML = '';
+
+        tasks.forEach((task, index) => {
+            const isCompleted = completedTasks.includes(index);
+            const isInProgress = task.interval !== null;
+            const taskElement = document.createElement('div');
+            taskElement.className = `task-item d-flex justify-content-between align-items-center p-2 mb-2 ${isCompleted ? 'completed' : isInProgress ? 'in-progress' : ''}`;
+            taskElement.innerHTML = `
+                <div>
+                    <span class="task-text">${task.name}</span>
+                    <div class="time-info">
+                        Inicio: ${task.startTime ? task.startTime.toLocaleTimeString() : '---'} | Fin: ${task.endTime ? task.endTime.toLocaleTimeString() : '---'} | Tiempo: ${task.netTime ? task.netTime : '---'}
+                    </div>
+                </div>
+                <div>
+                    ${isInProgress ? `<span class="running-time">En progreso...</span>` : ''}
+                    <button class="btn ${isCompleted ? 'btn-success' : 'btn-outline-primary'} btn-sm btn-action me-2" onclick="toggleTask(${index})">
+                        <i class="fas ${isCompleted ? 'fa-check' : isInProgress ? 'fa-pause' : 'fa-play'}"></i>
+                    </button>
+                    <button class="btn btn-outline-secondary btn-sm btn-action" onclick="showNotes(${index})">
+                        <i class="fas fa-sticky-note"></i>
+                    </button>
+                </div>
+            `;
+            if (task.name === "vista mambulog v/s ipmcontrolmambu") {
+                taskElement.innerHTML += `
+                    <div class="mt-2">
+                        <div class="input-group">
+                            <input type="text" id="mambulogInput1" class="form-control" placeholder="Valor 1" oninput="updateReadOnlyFields()">
+                            <input type="text" id="mambulogInput2" class="form-control" placeholder="Valor 2" oninput="updateReadOnlyFields()">
+                        </div>
+                        <div class="input-group">
+                            <input type="text" id="mambulogInput3" class="form-control" placeholder="Valor 3" oninput="updateReadOnlyFields()">
+                            <input type="text" id="mambulogInput4" class="form-control" placeholder="Valor 4" oninput="updateReadOnlyFields()">
+                        </div>
+                        <div class="input-group">
+                            <input type="text" id="mambulogInput5" class="form-control" placeholder="Valor 5" readonly>
+                            <input type="text" id="mambulogInput6" class="form-control" placeholder="Valor 6" readonly>
+                        </div>
+                        <label for="ipmcontrolmambuInput">Ipmcontrolmambu:</label>
+                        <input type="text" id="ipmcontrolmambuInput" class="form-control mb-2" placeholder="Ingrese valor">
+                        <button class="btn btn-primary btn-sm" onclick="calculateMambulog()">Calcular</button>
+                        <div id="result" class="mt-2"></div>
+                    </div>
+                `;
+            }
+            taskList.appendChild(taskElement);
+        });
+    }
+
+    function toggleTask(index) {
+        const task = tasks[index];
+
+        if (!task.startTime) {
+            task.startTime = new Date();
+            task.interval = setInterval(() => {
+                const currentTime = new Date();
+                const elapsedTime = new Date(currentTime - task.startTime);
+                const minutes = elapsedTime.getUTCMinutes();
+                const seconds = elapsedTime.getUTCSeconds();
+                task.netTime = `${minutes}m ${seconds}s`;
+                renderTasks();
+            }, 1000);
+        } else if (!task.endTime) {
+            clearInterval(task.interval);
+            task.endTime = new Date();
+            const elapsedTime = new Date(task.endTime - task.startTime);
+            const minutes = elapsedTime.getUTCMinutes();
+            const seconds = elapsedTime.getUTCSeconds();
+            task.netTime = `${minutes}m ${seconds}s`;
+            task.interval = null;
+            completedTasks.push(index);
+
+            updateProgress();
+            updateCharts();
+        }
+
+        renderTasks();
+    }
+
+    function showNotes(index) {
+        const task = tasks[index];
+        const notes = prompt('Notas para la tarea:', task.notes || '');
+        if (notes !== null) {
+            task.notes = notes;
+        }
+    }
+
+    function updateProgress() {
+        const totalTasks = tasks.length;
+        const completed = completedTasks.length;
+        const progressPercent = Math.round((completed / totalTasks) * 100);
+        const progressBar = document.getElementById('progressBar');
+        progressBar.style.width = `${progressPercent}%`;
+        progressBar.innerText = `${progressPercent}%`;
+
+        document.getElementById('pendingTasks').innerText = `Tareas pendientes: ${totalTasks - completed}`;
+        document.getElementById('completedTasks').innerText = `Tareas completadas: ${completed}`;
+    }
+
+    function updateCharts() {
+        // Actualizar datos semanales (asumiendo que estamos en el día actual)
+        const today = new Date().getDay();
+        weeklyData[today] += 1;
+        weeklyChart.data.datasets[0].data = weeklyData;
+        weeklyChart.update();
+
+        // Actualizar gráfico de rendimiento
+        performanceChart.data.datasets[0].data = [completedTasks.length, tasks.length - completedTasks.length];
+        performanceChart.update();
+    }
+
+    function initCharts() {
+        const ctxWeekly = document.getElementById('weeklyChart').getContext('2d');
+        const ctxPerformance = document.getElementById('performanceChart').getContext('2d');
+
+        weeklyChart = new Chart(ctxWeekly, {
+            type: 'line',
+            data: {
+                labels: ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'],
+                datasets: [{
+                    label: 'Tareas Completadas',
+                    data: weeklyData,
+                    backgroundColor: 'rgba(52, 152, 219, 0.2)',
+                    borderColor: '#3498db',
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        performanceChart = new Chart(ctxPerformance, {
+            type: 'doughnut',
+            data: {
+                labels: ['Completadas', 'Pendientes'],
+                datasets: [{
+                    label: 'Rendimiento General',
+                    data: [completedTasks.length, tasks.length - completedTasks.length],
+                    backgroundColor: ['#2ecc71', '#e74c3c']
+                }]
+            },
+            options: {
+                responsive: true
+            }
+        });
+    }
+
+    function updateReadOnlyFields() {
+        const mambulogInput1 = parseInt(document.getElementById('mambulogInput1').value) || 0;
+        const mambulogInput2 = parseInt(document.getElementById('mambulogInput2').value) || 0;
+        const mambulogInput3 = parseInt(document.getElementById('mambulogInput3').value) || 0;
+        const mambulogInput4 = parseInt(document.getElementById('mambulogInput4').value) || 0;
+
+        const result5 = mambulogInput1 - mambulogInput2;
+        const result6 = mambulogInput3 - mambulogInput4;
+
+        document.getElementById('mambulogInput5').value = result5;
+        document.getElementById('mambulogInput6').value = result6;
+    }
+
+    function calculateMambulog() {
+        const result5 = parseInt(document.getElementById('mambulogInput5').value);
+        const result6 = parseInt(document.getElementById('mambulogInput6').value);
+        const ipmcontrolmambuInput = parseInt(document.getElementById('ipmcontrolmambuInput').value);
+
+        if (result5 && result6 && ipmcontrolmambuInput) {
+            const totalResult = result5 + result6;
+
+            const resultElement = document.getElementById('result');
+            if (totalResult === ipmcontrolmambuInput) {
+                resultElement.innerText = 'Resultado: OK';
+            } else {
+                resultElement.innerText = 'Resultado: No coincide';
+            }
+        } else {
+            alert('Por favor, ingrese todos los valores.');
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        renderTasks();
+        initCharts();
+    });
+    </script>
+</body>
+</html>

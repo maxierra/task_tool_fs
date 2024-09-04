@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comparador de Archivos TXT Profesional</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Roboto', sans-serif;
+        }
+        .container {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            padding: 30px;
+            margin-top: 50px;
+        }
+        h1, h2 {
+            color: #343a40;
+        }
+        .form-control {
+            border: 2px solid #ced4da;
+            border-radius: 5px;
+            transition: border-color 0.3s ease-in-out;
+        }
+        .form-control:focus {
+            border-color: #007bff;
+            box-shadow: none;
+        }
+        .table {
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        .table thead th {
+            background-color: #343a40;
+            color: #ffffff;
+            border: none;
+        }
+        .table-hover tbody tr:hover {
+            background-color: #f1f3f5;
+        }
+        .result-ok {
+            background-color: #28a745;
+            color: #ffffff;
+            font-weight: bold;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+        .result-error {
+            background-color: #dc3545;
+            color: #ffffff;
+            font-weight: bold;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+        .file-upload-wrapper {
+            position: relative;
+            width: 100%;
+            height: 60px;
+            border: 2px dashed #007bff;
+            border-radius: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .file-upload-wrapper:hover {
+            background-color: #f8f9fa;
+        }
+        .file-upload-wrapper input[type="file"] {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            cursor: pointer;
+        }
+        .file-upload-text {
+            color: #007bff;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <%- include('navbar') %>
+    <div class="container">
+        <h1 class="text-center mb-5">Comparador de Archivos Txt</h1>
+        
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <h2 class="mb-3"><i class="fas fa-file-upload me-2"></i>Paso 1: Archivo Principal</h2>
+                <div class="file-upload-wrapper">
+                    <input type="file" class="form-control" accept=".txt" onchange="handleFileUpload(event)">
+                    <span class="file-upload-text">Seleccionar Archivo Principal</span>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <h2 class="mb-3"><i class="fas fa-exchange-alt me-2"></i>Paso 2: Archivo de Comparación</h2>
+                <div class="file-upload-wrapper">
+                    <input type="file" class="form-control" accept=".txt" onchange="handleComparisonFileUpload(event)">
+                    <span class="file-upload-text">Seleccionar Archivo de Comparación</span>
+                </div>
+            </div>
+        </div>
+        
+        <div id="result" class="mt-4"></div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        let tableData = {};
+
+        function handleFileUpload(event) {
+            const file = event.target.files[0];
+            const reader = new FileReader();
+            
+            reader.onload = function(e) {
+                const content = e.target.result;
+                const lines = content.split('\n');
+
+                const filename = file.name;
+                const datePart = filename.match(/D(\d{6})/)[1];
+                const day = datePart.substring(2, 4);
+                const month = datePart.substring(4, 6);
+                let year = datePart.substring(0, 2);
+
+                year = parseInt(year) >= 50 ? '20' + year : '19' + year;
+
+                const formattedDate = `${day}/${month}/${year}`;
+                const abuName = "Abu 275";
+
+                let tableHTML = `
+                    <div class="card mb-4">
+                        <div class="card-header bg-primary text-white">
+                            <h3 class="mb-0">${abuName}</h3>
+                        </div>
+                        <div class="card-body">
+                            <h4 class="card-title">Fecha del Archivo: ${formattedDate}</h4>
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>País</th>
+                                            <th>ID</th>
+                                            <th>Cantidad</th>
+                                            <th>Error</th>
+                                            <th>Contado</th>
+                                            <th>Resultado</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                `;
+
+                lines.forEach(line => {
+                    if (line.startsWith('H')) {
+                        const id = line.substring(1, 12).trim();
+                        const cantidad = parseInt(line.substring(13, 20).trim(), 10);
+                        const error = line.substring(39, 46).trim();
+                        let pais = '';
+                        let comparisonKey = '';
+
+                        if (id.startsWith('00000023389')) {
+                            pais = 'Chile';
+                            comparisonKey = 'Chile';
+                        } else if (id.startsWith('00000031718')) {
+                            pais = 'Perú';
+                            comparisonKey = 'Perú';
+                        }
+
+                        tableHTML += `
+                            <tr>
+                                <td>${pais}</td>
+                                <td>${id}</td>
+                                <td>${cantidad}</td>
+                                <td>${error}</td>
+                                <td id="count-${comparisonKey}">
+                                    <span class="badge bg-secondary">Esperando...</span>
+                                </td>
+                                <td id="result-${comparisonKey}">
+                                    <span class="badge bg-secondary">Esperando...</span>
+                                </td>
+                            </tr>
+                        `;
+
+                        tableData[comparisonKey] = { cantidad: cantidad, pais: pais };
+                    }
+                });
+
+                tableHTML += `
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                
+                document.getElementById('result').innerHTML = tableHTML;
+            };
+
+            reader.readAsText(file);
+        }
+
+        function handleComparisonFileUpload(event) {
+            const file = event.target.files[0];
+            const reader = new FileReader();
+        
+            reader.onload = function(e) {
+                const content = e.target.result;
+                const lines = content.split('\n');
+        
+                const filename = file.name;
+                let comparisonKey = '';
+                let headerPart = filename.match(/_(\d+)-ABU/)[1];
+        
+                comparisonKey = headerPart === '500' ? 'Chile' : (headerPart === '510' ? 'Perú' : '');
+
+                const validLines = lines.filter(line => line.trim() !== '');
+                const rowCount = validLines.length - 1;
+                
+                if (comparisonKey && tableData[comparisonKey]) {
+                    const countElement = document.getElementById(`count-${comparisonKey}`);
+                    countElement.innerHTML = `<span class="badge bg-info">${rowCount}</span>`;
+                    
+                    const resultElement = document.getElementById(`result-${comparisonKey}`);
+                    if (tableData[comparisonKey].cantidad === rowCount) {
+                        resultElement.innerHTML = '<span class="badge bg-success">OK</span>';
+                    } else {
+                        resultElement.innerHTML = '<span class="badge bg-danger">Desajuste</span>';
+                    }
+                }
+            };
+        
+            reader.readAsText(file);
+        }
+        
+        document.querySelectorAll('.file-upload-wrapper').forEach(wrapper => {
+            const fileInput = wrapper.querySelector('input[type="file"]');
+            const fileText = wrapper.querySelector('.file-upload-text');
+            
+            fileInput.addEventListener('change', function(e) {
+                if (this.files && this.files.length > 0) {
+                    fileText.textContent = this.files[0].name;
+                } else {
+                    fileText.textContent = 'Seleccionar Archivo';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

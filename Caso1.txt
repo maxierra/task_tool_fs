@@ -1,0 +1,32 @@
+cuenta Desde
+Adicional
+Número Tarjeta
+Fecha
+Importe
+Moneda
+Importe Confirmado
+Internacional
+Importe Original
+Moneda Original
+Plan
+Cuotas
+Código Autorización
+Número Comercio
+Estado
+Fecha Estado
+Relacionada
+Nro Cupón
+Origen
+Rechazo
+ICA
+MCC
+TCC
+Regla Fraude
+Modo Entrada
+Terminal POS
+Stand-In
+Id Autorización
+Estado de la Autorización del POS
+Id Transaccion - Marca
+10003043	0	5***********5705	31/8/2024 01:04:02	2042683.0	Local	2042684.0	SI	2225.0	DOLAR DE EE.UU.	DEBITO AUTOMATICO EN PESOS	1	119298	527021000205627-Hubspot Inc. Winchester USA	APROBADA	2/9/2024 10:10:58	SI	842642	ON-LINE		014021	7372			10		NO	1877849	0 – Normal request	MRW1A4TPX0831
+© 2024

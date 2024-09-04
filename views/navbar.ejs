@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Análisis Casos Rechazados por Mambu</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-..."/>
+
+    <style>
+        /* Estilo del sidebar */
+        .sidebar {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: #343a40; /* Gris oscuro */
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 60px;
+        }
+
+        .sidebar a {
+            padding: 15px 20px;
+            text-decoration: none;
+            font-size: 18px;
+            color: #ffffff; /* Texto en blanco */
+            display: flex;
+            align-items: center;
+            transition: 0.3s;
+        }
+
+        .sidebar a:hover {
+            background-color: #495057; /* Un poco más oscuro al pasar el ratón */
+        }
+
+        .sidebar i {
+            margin-right: 10px;
+        }
+
+        .closebtn {
+            position: absolute;
+            top: 0;
+            right: 20px;
+            font-size: 36px;
+            color: #ffffff; /* Icono de cerrar en blanco */
+            margin-left: 50px;
+        }
+
+        #main-content {
+            transition: margin-left 0.5s;
+            padding: 16px;
+        }
+
+        .openbtn {
+            font-size: 20px;
+            cursor: pointer;
+            background-color: #007bff;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .openbtn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+<div id="sidebar" class="sidebar">
+    <button class="closebtn" onclick="closeNav()">×</button>
+    <a href="/"><i class="fas fa-home"></i> Inicio</a>
+    <a href="/analisis-casos-rechazados"><i class="fas fa-exclamation-triangle"></i> Rechazos Mambu</a>
+    <a href="/tareas-diarias"><i class="fas fa-tasks"></i> Tareas Diarias</a>
+    <a href="/abu"><i class="fas fa-info-circle"></i> Informe Abu</a>
+    <!-- Agrega más enlaces según sea necesario -->
+    <a href="/login"><i class="fas fa-sign-out-alt"></i> Salir</a>
+</div>
+
+<div id="main-content">
+    <button class="openbtn" onclick="openNav()">☰ Menú</button>
+    <!-- Aquí va el contenido principal de la página -->
+</div>
+
+<script>
+    function openNav() {
+        document.getElementById("sidebar").style.width = "250px";
+        document.getElementById("main-content").style.marginLeft = "250px";
+    }
+
+    function closeNav() {
+        document.getElementById("sidebar").style.width = "0";
+        document.getElementById("main-content").style.marginLeft = "0";
+    }
+</script>
+
+</body>
+</html>
