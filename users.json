@@ -1,7 +1,14 @@
 [
     {
-      "email": "maximiliano.erramouspe@bizland.tech",
-      "password": "60CErnP5aIUvgtII"
+        "email": "maximiliano.erramouspe@bizland.tech",
+        "password": "60CErnP5aIUvgtII"
+    },
+    {
+        "email": "pablo.culla@bizland.tech",
+        "password": "Z1dTSlEaXIlAKkdw"
+    },
+    {
+        "email": "tomas.acosta@bizland.tech",
+        "password": "gAuPTe9o95tpZGpw"
     }
-  ]
-  
+]
