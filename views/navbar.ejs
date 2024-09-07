@@ -16,7 +16,7 @@
             z-index: 1;
             top: 0;
             left: 0;
-            background-color: #343a40; /* Gris oscuro */
+            background-color: #2d87e2; /* Gris oscuro */
             overflow-x: hidden;
             transition: 0.5s;
             padding-top: 60px;
@@ -67,6 +67,15 @@
         .openbtn:hover {
             background-color: #0056b3;
         }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color:  white;
+            z-index: 1000;
+        }
     </style>
 </head>
 <body>
@@ -75,14 +84,28 @@
     <button class="closebtn" onclick="closeNav()">×</button>
     <a href="/"><i class="fas fa-home"></i> Inicio</a>
     <a href="/analisis-casos-rechazados"><i class="fas fa-exclamation-triangle"></i> Rechazos Mambu</a>
+    <a href="/archivos_zip"><i class="fas fa-exclamation-triangle"></i> archivos zip</a>
     <a href="/tareas-diarias"><i class="fas fa-tasks"></i> Tareas Diarias</a>
     <a href="/abu"><i class="fas fa-info-circle"></i> Informe Abu</a>
     <!-- Agrega más enlaces según sea necesario -->
     <a href="/login"><i class="fas fa-sign-out-alt"></i> Salir</a>
 </div>
 
+<nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container-fluid">
+        <button class="openbtn" onclick="openNav()">☰ Menú</button>
+        
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+         
+            </ul>
+        </div>
+    </div>
+</nav>
+
 <div id="main-content">
-    <button class="openbtn" onclick="openNav()">☰ Menú</button>
     <!-- Aquí va el contenido principal de la página -->
 </div>
 

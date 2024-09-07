@@ -1,0 +1,615 @@
+1IP727010-AA                                           MASTERCARD WORLDWIDE                                       RUN DATE: 09/05/24 
+                                                CLEARING CYCLE 002 - ACKNOWLEDGEMENT                              PAGE NO:         1 
+                                                              2024-09-06                                                             
+ MEMBER ID: 00000023389                                                                                                              
+                                                         NO DATA TO REPORT                                                           
+1IP727020-AA                                           MASTERCARD WORLDWIDE                                       RUN DATE: 09/05/24 
+ ACCEPTANCE BRAND: MCC                          CLEARING CYCLE 002 - NOTIFICATION                                 PAGE NO:         1 
+ BUSINESS SERVICE LEVEL: INTERREGIONAL                        2024-09-06                                                             
+ BUSINESS SERVICE ID: 010301                                                                                                         
+ FILE ID: 001/240906/00000023389/02201                                                                                               
+ MEMBER ID: 00000023389                                                                                                              
+                                                                                                                                     
+ MASTERCARD SETTLED                                                     RECON                         FEE                            
+                                                                         CURR                         CURR                           
+ TRANS. FUNC. PROC.CODE       IRD   COUNTS               RECON AMOUNT    CODE       TRANS FEE         CODE                           
+ ------------ --------------- --- -------- -------------------------- ------- ----------------------- -------                        
+ FIRST PRES.  PURCHASE   ORIG YA        13                  691.05 DR 840-USD                11.23 CR 840-USD                        
+              PURCHASE   ORIG YD         7                  262.17 DR 840-USD                 2.92 CR 840-USD                        
+              PURCHASE   ORIG 61         4                  415.59 DR 840-USD                 8.48 CR 840-USD                        
+              ATM CASH   ORIG 51        68               11,645.54 DR 840-USD                63.43 DR 840-USD                        
+ ------------ --------------- --- -------- -------------------------- ------- ----------------------- -------                        
+ FIRST PRES.  TOTAL                     92               13,014.35 DR 840-USD                40.80 DR 840-USD                        
+                                                                                                                                     
+ FEE COLL-CSG FEE COL CR ORIG            1                    9.50 DR 840-USD                    0 CR    -                           
+ ------------ --------------- --- -------- -------------------------- ------- ----------------------- -------                        
+ FEE COLL-CSG TOTAL                      1                    9.50 DR 840-USD                 0.00 DR    -                           
+                                                                                                                                     
+ INTERREGIONAL                                                                                                                       
+ MASTERCARD SETTLED                                                                                                                  
+ BUSINESS SERVICE ID SUBTOTAL           93               13,023.85 DR 840-USD                40.80 DR 840-USD                        
+1IP727020-AA                                           MASTERCARD WORLDWIDE                                       RUN DATE: 09/05/24 
+ ACCEPTANCE BRAND: MCC                          CLEARING CYCLE 002 - NOTIFICATION                                 PAGE NO:         1 
+ BUSINESS SERVICE LEVEL: INTERREGIONAL                        2024-09-06                                                             
+ BUSINESS SERVICE ID: 040301                                                                                                         
+ FILE ID: 001/240906/00000023389/02201                                                                                               
+ MEMBER ID: 00000023389                                                                                                              
+                                                                                                                                     
+ MASTERCARD SETTLED                                                     RECON                         FEE                            
+                                                                         CURR                         CURR                           
+ TRANS. FUNC. PROC.CODE       IRD   COUNTS               RECON AMOUNT    CODE       TRANS FEE         CODE                           
+ ------------ --------------- --- -------- -------------------------- ------- ----------------------- -------                        
+ FIRST PRES.  PURCHASE   ORIG YA         1                    0.97 DR 840-USD                 0.02 CR 840-USD                        
+              PURCHASE   ORIG YD         9                  120.69 DR 840-USD                 1.31 CR 840-USD                        
+              PURCHASE   ORIG YG         6                  207.84 DR 840-USD                 3.32 CR 840-USD                        
+ ------------ --------------- --- -------- -------------------------- ------- ----------------------- -------                        
+ FIRST PRES.  TOTAL                     16                  329.50 DR 840-USD                 4.65 CR 840-USD                        
+                                                                                                                                     
+ INTERREGIONAL                                                                                                                       
+ MASTERCARD SETTLED                                                                                                                  
+ BUSINESS SERVICE ID SUBTOTAL           16                  329.50 DR 840-USD                 4.65 CR 840-USD                        
+1IP727020-AA                                           MASTERCARD WORLDWIDE                                       RUN DATE: 09/05/24 
+ ACCEPTANCE BRAND: MCC                          CLEARING CYCLE 002 - NOTIFICATION                                 PAGE NO:         1 
+ BUSINESS SERVICE LEVEL: INTERREGIONAL                        2024-09-06                                                             
+ BUSINESS SERVICE ID: 050301                                                                                                         
+ FILE ID: 001/240906/00000023389/02201                                                                                               
+ MEMBER ID: 00000023389                                                                                                              
+                                                                                                                                     
+ MASTERCARD SETTLED                                                     RECON                         FEE                            
+                                                                         CURR                         CURR                           
+ TRANS. FUNC. PROC.CODE       IRD   COUNTS               RECON AMOUNT    CODE       TRANS FEE         CODE                           
+ ------------ --------------- --- -------- -------------------------- ------- ----------------------- -------                        
+ FIRST PRES.  PURCHASE   ORIG EB       207                5,685.52 DR 840-USD                10.17 CR 840-USD                        
+              PURCHASE   ORIG EW        49                3,501.51 DR 840-USD                40.44 CR 840-USD                        
+              PURCHASE   ORIG YA         1                   15.56 DR 840-USD                 0.25 CR 840-USD                        
+              PURCHASE   ORIG YD        11                  165.46 DR 840-USD                 1.80 CR 840-USD                        
+              PURCHASE   ORIG YG         2                   51.16 DR 840-USD                 0.82 CR 840-USD                        
+              PURCHASE   ORIG 61         9                3,103.13 DR 840-USD                63.36 CR 840-USD                        
+              UNIQUE TXN ORIG EW         1                   10.60 DR 840-USD                 0.12 CR 840-USD                        
+ ------------ --------------- --- -------- -------------------------- ------- ----------------------- -------                        
+ FIRST PRES.  TOTAL                    280               12,532.94 DR 840-USD               116.96 CR 840-USD                        
+                                                                                                                                     
+ INTERREGIONAL                                                                                                                       
+ MASTERCARD SETTLED                                                                                                                  
+ BUSINESS SERVICE ID SUBTOTAL          280               12,532.94 DR 840-USD               116.96 CR 840-USD                        
+1IP727020-AA                                           MASTERCARD WORLDWIDE                                       RUN DATE: 09/05/24 
+ ACCEPTANCE BRAND: MCC                          CLEARING CYCLE 002 - NOTIFICATION                                 PAGE NO:         1 
+ BUSINESS SERVICE LEVEL: INTERREGIONAL                        2024-09-06                                                             
+ BUSINESS SERVICE ID: 060301                                                                                                         
+ FILE ID: 001/240906/00000023389/02201                                                                                               
+ MEMBER ID: 00000023389                                                                                                              
+                                                                                                                                     
+ MASTERCARD SETTLED                                                     RECON                         FEE                            
+                                                                         CURR                         CURR                           
+ TRANS. FUNC. PROC.CODE       IRD   COUNTS               RECON AMOUNT    CODE       TRANS FEE         CODE                           
+ ------------ --------------- --- -------- -------------------------- ------- ----------------------- -------                        
+ FIRST PRES.  PURCHASE   ORIG YA         1                  349.52 DR 840-USD                 5.68 CR 840-USD                        
+ ------------ --------------- --- -------- -------------------------- ------- ----------------------- -------                        
+ FIRST PRES.  TOTAL                      1                  349.52 DR 840-USD                 5.68 CR 840-USD                        
+                                                                                                                                     
+ INTERREGIONAL                                                                                                                       
+ MASTERCARD SETTLED                                                                                                                  
+ BUSINESS SERVICE ID SUBTOTAL            1                  349.52 DR 840-USD                 5.68 CR 840-USD                        
+1IP727020-AA                                           MASTERCARD WORLDWIDE                                       RUN DATE: 09/05/24 
+ ACCEPTANCE BRAND: MCC                          CLEARING CYCLE 002 - NOTIFICATION                                 PAGE NO:         1 
+ BUSINESS SERVICE LEVEL: INTRAREGIONAL                        2024-09-06                                                             
+ BUSINESS SERVICE ID: 030001                                                                                                         
+ FILE ID: 001/240906/00000023389/02201                                                                                               
+ MEMBER ID: 00000023389                                                                                                              
+                                                                                                                                     
+ MASTERCARD SETTLED                                                     RECON                         FEE                            
+                                                                         CURR                         CURR                           
+ TRANS. FUNC. PROC.CODE       IRD   COUNTS               RECON AMOUNT    CODE       TRANS FEE         CODE                           
+ ------------ --------------- --- -------- -------------------------- ------- ----------------------- -------                        
+ FIRST PRES.  PURCHASE   ORIG YA        14                  100.56 DR 840-USD                 1.63 CR 840-USD                        
+              PURCHASE   ORIG YD        19                  244.63 DR 840-USD                 2.68 CR 840-USD                        
+              PURCHASE   ORIG YG         1                   84.80 DR 840-USD                 1.36 CR 840-USD                        
+ ------------ --------------- --- -------- -------------------------- ------- ----------------------- -------                        
+ FIRST PRES.  TOTAL                     34                  429.99 DR 840-USD                 5.67 CR 840-USD                        
+                                                                                                                                     
+ INTRAREGIONAL                                                                                                                       
+ MASTERCARD SETTLED                                                                                                                  
+ BUSINESS SERVICE ID SUBTOTAL           34                  429.99 DR 840-USD                 5.67 CR 840-USD                        
+1IP727020-AA                                           MASTERCARD WORLDWIDE                                       RUN DATE: 09/05/24 
+ ACCEPTANCE BRAND: MCC                          CLEARING CYCLE 002 - NOTIFICATION                                 PAGE NO:         1 
+ BUSINESS SERVICE LEVEL: INTRACOUNTRY                         2024-09-06                                                             
+ BUSINESS SERVICE ID: 152001                                                                                                         
+ FILE ID: 001/240906/00000023389/02201                                                                                               
+ MEMBER ID: 00000023389                                                                                                              
+                                                                                                                                     
+ MASTERCARD SETTLED                                                     RECON                         FEE                            
+                                                                         CURR                         CURR                           
+ TRANS. FUNC. PROC.CODE       IRD   COUNTS               RECON AMOUNT    CODE       TRANS FEE         CODE                           
+ ------------ --------------- --- -------- -------------------------- ------- ----------------------- -------                        
+ FIRST PRES.  PURCHASE   ORIG CP       141               1,729,120 DR 152-CLP               16,337 CR 152-CLP                        
+              PURCHASE   ORIG NP        26               1,183,872 DR 152-CLP               11,031 CR 152-CLP                        
+ ------------ --------------- --- -------- -------------------------- ------- ----------------------- -------                        
+ FIRST PRES.  TOTAL                    167               2,912,992 DR 152-CLP               27,368 CR 152-CLP                        
+                                                                                                                                     
+ FEE COLL-CSG FEE COL DR ORIG            4                   5,205 CR 152-CLP                    0 CR    -                           
+ ------------ --------------- --- -------- -------------------------- ------- ----------------------- -------                        
+ FEE COLL-CSG TOTAL                      4                   5,205 CR 152-CLP                    0 DR    -                           
+                                                                                                                                     
+ INTRACOUNTRY                                                                                                                        
+ MASTERCARD SETTLED                                                                                                                  
+ BUSINESS SERVICE ID SUBTOTAL          171               2,907,787 DR 152-CLP               27,368 CR 152-CLP                        
+1IP727020-AA                                           MASTERCARD WORLDWIDE                                       RUN DATE: 09/05/24 
+ ACCEPTANCE BRAND: MCC                          CLEARING CYCLE 002 - NOTIFICATION                                 PAGE NO:         1 
+ BUSINESS SERVICE LEVEL: INTERREGIONAL                        2024-09-06                                                             
+ BUSINESS SERVICE ID: 010301                                                                                                         
+ FILE ID: 001/240906/00000023389/02201                                                                                               
+ MEMBER ID: 00000023389                                                                                                              
+                                                                                                                                     
+                                                                                                                                     
+ NON-FINANCIAL DETAIL                              COUNTS                                                                            
+ ORIGINALS:                                                                                                                          
+                FINANCIAL DETAIL ADDENDUM          0000008                                                                           
+1IP727020-AA                                           MASTERCARD WORLDWIDE                                       RUN DATE: 09/05/24 
+ ACCEPTANCE BRAND: MCC                          CLEARING CYCLE 002 - NOTIFICATION                                 PAGE NO:         1 
+ BUSINESS SERVICE LEVEL: INTERREGIONAL                        2024-09-06                                                             
+ BUSINESS SERVICE ID: 050301                                                                                                         
+ FILE ID: 001/240906/00000023389/02201                                                                                               
+ MEMBER ID: 00000023389                                                                                                              
+                                                                                                                                     
+                                                                                                                                     
+ NON-FINANCIAL DETAIL                              COUNTS                                                                            
+ ORIGINALS:                                                                                                                          
+                FINANCIAL DETAIL ADDENDUM          0000042                                                                           
+1IP727020-AA                                           MASTERCARD WORLDWIDE                                       RUN DATE: 09/05/24 
+                                                CLEARING CYCLE 002 - NOTIFICATION                                 PAGE NO:         1 
+                                                              2024-09-06                                                             
+                                                                                                                                     
+ ACCEPTANCE BRAND : MCC                                                                                                              
+ BUSINESS SERVICE LEVEL :INTERREGIONAL                                                                                               
+ MEMBER ID: 00000023389                                                                                                              
+ CURRENCY CODE : 840-USD                                                                                                             
+                                                                                                                                     
+ BUSINESS                                                                                                                            
+ SERVICE                               ORIG/                                                                                         
+     ID            FILE ID             RVSL          RECON. AMOUNT                   TRANSACTION FEE                                 
+ -------- ---------------------------- ----        -------------------              -------------------                              
+ 010301   001/240906/00000023389/02201 ORIG                13,023.85 DR                        40.80 DR                              
+ 040301   001/240906/00000023389/02201 ORIG                   329.50 DR                         4.65 CR                              
+ 050301   001/240906/00000023389/02201 ORIG                12,532.94 DR                       116.96 CR                              
+ 060301   001/240906/00000023389/02201 ORIG                   349.52 DR                         5.68 CR                              
+                                                                                                                                     
+                             GRAND TOTAL                   26,235.81 DR                        86.49 CR                              
+                                                                                                                                     
+ ACCEPTANCE BRAND : MCC                                                                                                              
+ BUSINESS SERVICE LEVEL :INTRAREGIONAL                                                                                               
+ MEMBER ID: 00000023389                                                                                                              
+ CURRENCY CODE : 840-USD                                                                                                             
+                                                                                                                                     
+ BUSINESS                                                                                                                            
+ SERVICE                               ORIG/                                                                                         
+     ID            FILE ID             RVSL          RECON. AMOUNT                   TRANSACTION FEE                                 
+ -------- ---------------------------- ----        -------------------              -------------------                              
+ 030001   001/240906/00000023389/02201 ORIG                   429.99 DR                         5.67 CR                              
+                                                                                                                                     
+                             GRAND TOTAL                      429.99 DR                         5.67 CR                              
+                                                                                                                                     
+ ACCEPTANCE BRAND : MCC                                                                                                              
+ BUSINESS SERVICE LEVEL :INTRACOUNTRY                                                                                                
+ MEMBER ID: 00000023389                                                                                                              
+ CURRENCY CODE : 152-CLP                                                                                                             
+                                                                                                                                     
+ BUSINESS                                                                                                                            
+ SERVICE                               ORIG/                                                                                         
+     ID            FILE ID             RVSL          RECON. AMOUNT                   TRANSACTION FEE                                 
+ -------- ---------------------------- ----        -------------------              -------------------                              
+ 152001   001/240906/00000023389/02201 ORIG                2,907,787 DR                       27,368 CR                              
+                                                                                                                                     
+                             GRAND TOTAL                   2,907,787 DR                       27,368 CR                              
+                                                                                                                                     
+1IP728010-AA                                           MASTERCARD WORLDWIDE                                       RUN DATE: 09/05/24 
+ ACCEPTANCE BRAND: MCC                                    CLEARING CYCLE 002                                      RUN TIME: 21.36.02 
+ BUSINESS SERVICE LEVEL: INTERREGIONAL                        2024-09-06                                          PAGE NO:         1 
+ MEMBER ID: 00000023389                                                                                                              
+ CURRENCY CODE :  840 - USD                                                                                                          
+                                                                                                                                     
+ BUSINESS                                                                                           RECON.                           
+ SERVICE               FILE ID                       FILE ID                      NET RECON          CURR.                           
+    ID              TO MASTERCARD                FROM MASTERCARD                CURRENCY AMOUNT      CODE                            
+ ________   ____________________________   ____________________________   _______________________   _______                          
+  010301                                   001/240906/00000023389/02201              13,023.85 DR   840-USD                          
+  040301                                   001/240906/00000023389/02201                 329.50 DR   840-USD                          
+  050301                                   001/240906/00000023389/02201              12,532.94 DR   840-USD                          
+  060301                                   001/240906/00000023389/02201                 349.52 DR   840-USD                          
+                                                                                                                                     
+  TOTAL                                                                              26,235.81 DR   840-USD                          
+                                                                                                                                     
+1IP728010-AA                                           MASTERCARD WORLDWIDE                                       RUN DATE: 09/05/24 
+ ACCEPTANCE BRAND: MCC                                    CLEARING CYCLE 002                                      RUN TIME: 21.36.02 
+ BUSINESS SERVICE LEVEL: INTRAREGIONAL                        2024-09-06                                          PAGE NO:         2 
+ MEMBER ID: 00000023389                                                                                                              
+ CURRENCY CODE :  840 - USD                                                                                                          
+                                                                                                                                     
+ BUSINESS                                                                                           RECON.                           
+ SERVICE               FILE ID                       FILE ID                      NET RECON          CURR.                           
+    ID              TO MASTERCARD                FROM MASTERCARD                CURRENCY AMOUNT      CODE                            
+ ________   ____________________________   ____________________________   _______________________   _______                          
+  030001                                   001/240906/00000023389/02201                 429.99 DR   840-USD                          
+                                                                                                                                     
+  TOTAL                                                                                 429.99 DR   840-USD                          
+                                                                                                                                     
+1IP728010-AA                                           MASTERCARD WORLDWIDE                                       RUN DATE: 09/05/24 
+ ACCEPTANCE BRAND: MCC                                    CLEARING CYCLE 002                                      RUN TIME: 21.36.02 
+ BUSINESS SERVICE LEVEL: INTRACOUNTRY                         2024-09-06                                          PAGE NO:         3 
+ MEMBER ID: 00000023389                                                                                                              
+ CURRENCY CODE :  152 - CLP                                                                                                          
+                                                                                                                                     
+ BUSINESS                                                                                           RECON.                           
+ SERVICE               FILE ID                       FILE ID                      NET RECON          CURR.                           
+    ID              TO MASTERCARD                FROM MASTERCARD                CURRENCY AMOUNT      CODE                            
+ ________   ____________________________   ____________________________   _______________________   _______                          
+  152001                                   001/240906/00000023389/02201              2,907,787 DR   152-CLP                          
+                                                                                                                                     
+  TOTAL                                                                              2,907,787 DR   152-CLP                          
+                                                                                                                                     
+1IP728010-AA                                           MASTERCARD WORLDWIDE                                       RUN DATE: 09/05/24 
+ ACCEPTANCE BRAND: MCC                                    CLEARING CYCLE 002 SUMMARY                              RUN TIME: 21.36.02 
+ BUSINESS SERVICE LEVEL: INTERREGIONAL                        2024-09-06                                          PAGE NO:         4 
+ MEMBER ID: 00000023389                                                                                                              
+ CURRENCY CODE :  840 - USD                                                                                                          
+                                                                                                                                     
+                                                                                                    RECON.                           
+  CYCLE                FILE ID                       FILE ID                      NET RECON          CURR.                           
+ ACTIVITY           TO MASTERCARD                FROM MASTERCARD                CURRENCY AMOUNT      CODE                            
+ ________   ____________________________   ____________________________   _______________________   _______                          
+  CYCLE 01                                 001/240906/00000023389/01101              30,256.86 DR   840-USD                          
+  CYCLE 02                                 001/240906/00000023389/02201              26,235.81 DR   840-USD                          
+                                                                                                                                     
+  TOTAL                                                                              56,492.67 DR   840-USD                          
+                                                                                                                                     
+1IP728010-AA                                           MASTERCARD WORLDWIDE                                       RUN DATE: 09/05/24 
+ ACCEPTANCE BRAND: MCC                                    CLEARING CYCLE 002 SUMMARY                              RUN TIME: 21.36.02 
+ BUSINESS SERVICE LEVEL: INTRAREGIONAL                        2024-09-06                                          PAGE NO:         5 
+ MEMBER ID: 00000023389                                                                                                              
+ CURRENCY CODE :  840 - USD                                                                                                          
+                                                                                                                                     
+                                                                                                    RECON.                           
+  CYCLE                FILE ID                       FILE ID                      NET RECON          CURR.                           
+ ACTIVITY           TO MASTERCARD                FROM MASTERCARD                CURRENCY AMOUNT      CODE                            
+ ________   ____________________________   ____________________________   _______________________   _______                          
+  CYCLE 01                                 001/240906/00000023389/01101               2,110.82 DR   840-USD                          
+  CYCLE 02                                 001/240906/00000023389/02201                 429.99 DR   840-USD                          
+                                                                                                                                     
+  TOTAL                                                                               2,540.81 DR   840-USD                          
+                                                                                                                                     
+1IP728010-AA                                           MASTERCARD WORLDWIDE                                       RUN DATE: 09/05/24 
+ ACCEPTANCE BRAND: MCC                                    CLEARING CYCLE 002 SUMMARY                              RUN TIME: 21.36.02 
+ BUSINESS SERVICE LEVEL: INTRACOUNTRY                         2024-09-06                                          PAGE NO:         6 
+ MEMBER ID: 00000023389                                                                                                              
+ CURRENCY CODE :  152 - CLP                                                                                                          
+                                                                                                                                     
+                                                                                                    RECON.                           
+  CYCLE                FILE ID                       FILE ID                      NET RECON          CURR.                           
+ ACTIVITY           TO MASTERCARD                FROM MASTERCARD                CURRENCY AMOUNT      CODE                            
+ ________   ____________________________   ____________________________   _______________________   _______                          
+  CYCLE 01                                 001/240906/00000023389/01101              8,970,156 DR   152-CLP                          
+  CYCLE 02                                 001/240906/00000023389/02201              2,907,787 DR   152-CLP                          
+                                                                                                                                     
+  TOTAL                                                                             11,877,943 DR   152-CLP                          
+                                                                                                                                     
+1IP728010-AA                                           MASTERCARD WORLDWIDE                                       RUN DATE: 09/05/24 
+                                                           CLEARING DAY TOTAL                                     RUN TIME: 21.36.02 
+ MEMBER ID: 00000023389                                       2024-09-06                                          PAGE NO:         7 
+                                                                                                                                     
+ CLEARING DAY TOTAL AS OF CLEARING CYCLE  2                                                                                          
+                                                                                                                                     
+              RECONCILIATION          NET RECONCILIATION                                                                             
+              CURRENCY  CODE           CURRENCY AMOUNT                                                                               
+              --------------          ------------------                                                                             
+                152-CLP                    11,877,943 DR                                                                             
+                840-USD                     59,033.48 DR                                                                             
+                                                        ***END OF REPORT***                                                          
+1IP727010-AA                                           MASTERCARD WORLDWIDE                                       RUN DATE: 09/05/24 
+                                                CLEARING CYCLE 002 - ACKNOWLEDGEMENT                              PAGE NO:         1 
+                                                              2024-09-06                                                             
+ MEMBER ID: 00000031718                                                                                                              
+                                                         NO DATA TO REPORT                                                           
+1IP727020-AA                                           MASTERCARD WORLDWIDE                                       RUN DATE: 09/05/24 
+ ACCEPTANCE BRAND: MCC                          CLEARING CYCLE 002 - NOTIFICATION                                 PAGE NO:         1 
+ BUSINESS SERVICE LEVEL: INTERREGIONAL                        2024-09-06                                                             
+ BUSINESS SERVICE ID: 010301                                                                                                         
+ FILE ID: 001/240906/00000023389/02201                                                                                               
+ MEMBER ID: 00000031718                                                                                                              
+                                                                                                                                     
+ MASTERCARD SETTLED                                                     RECON                         FEE                            
+                                                                         CURR                         CURR                           
+ TRANS. FUNC. PROC.CODE       IRD   COUNTS               RECON AMOUNT    CODE       TRANS FEE         CODE                           
+ ------------ --------------- --- -------- -------------------------- ------- ----------------------- -------                        
+ FIRST PRES.  PURCHASE   ORIG YA         3                    6.32 DR 840-USD                 0.11 CR 840-USD                        
+              PURCHASE   ORIG YG         1                    4.22 DR 840-USD                 0.07 CR 840-USD                        
+              ATM CASH   ORIG 51        14                2,695.24 DR 840-USD                15.60 DR 840-USD                        
+ ------------ --------------- --- -------- -------------------------- ------- ----------------------- -------                        
+ FIRST PRES.  TOTAL                     18                2,705.78 DR 840-USD                15.42 DR 840-USD                        
+                                                                                                                                     
+ FEE COLL-CSG FEE COL CR ORIG            1                    0.25 DR 840-USD                    0 CR    -                           
+ ------------ --------------- --- -------- -------------------------- ------- ----------------------- -------                        
+ FEE COLL-CSG TOTAL                      1                    0.25 DR 840-USD                 0.00 DR    -                           
+                                                                                                                                     
+ INTERREGIONAL                                                                                                                       
+ MASTERCARD SETTLED                                                                                                                  
+ BUSINESS SERVICE ID SUBTOTAL           19                2,706.03 DR 840-USD                15.42 DR 840-USD                        
+1IP727020-AA                                           MASTERCARD WORLDWIDE                                       RUN DATE: 09/05/24 
+ ACCEPTANCE BRAND: MCC                          CLEARING CYCLE 002 - NOTIFICATION                                 PAGE NO:         1 
+ BUSINESS SERVICE LEVEL: INTERREGIONAL                        2024-09-06                                                             
+ BUSINESS SERVICE ID: 040301                                                                                                         
+ FILE ID: 001/240906/00000023389/02201                                                                                               
+ MEMBER ID: 00000031718                                                                                                              
+                                                                                                                                     
+ MASTERCARD SETTLED                                                     RECON                         FEE                            
+                                                                         CURR                         CURR                           
+ TRANS. FUNC. PROC.CODE       IRD   COUNTS               RECON AMOUNT    CODE       TRANS FEE         CODE                           
+ ------------ --------------- --- -------- -------------------------- ------- ----------------------- -------                        
+ FIRST PRES.  PURCHASE   ORIG YA         2                    6.75 DR 840-USD                 0.11 CR 840-USD                        
+ ------------ --------------- --- -------- -------------------------- ------- ----------------------- -------                        
+ FIRST PRES.  TOTAL                      2                    6.75 DR 840-USD                 0.11 CR 840-USD                        
+                                                                                                                                     
+ INTERREGIONAL                                                                                                                       
+ MASTERCARD SETTLED                                                                                                                  
+ BUSINESS SERVICE ID SUBTOTAL            2                    6.75 DR 840-USD                 0.11 CR 840-USD                        
+1IP727020-AA                                           MASTERCARD WORLDWIDE                                       RUN DATE: 09/05/24 
+ ACCEPTANCE BRAND: MCC                          CLEARING CYCLE 002 - NOTIFICATION                                 PAGE NO:         1 
+ BUSINESS SERVICE LEVEL: INTERREGIONAL                        2024-09-06                                                             
+ BUSINESS SERVICE ID: 050301                                                                                                         
+ FILE ID: 001/240906/00000023389/02201                                                                                               
+ MEMBER ID: 00000031718                                                                                                              
+                                                                                                                                     
+ MASTERCARD SETTLED                                                     RECON                         FEE                            
+                                                                         CURR                         CURR                           
+ TRANS. FUNC. PROC.CODE       IRD   COUNTS               RECON AMOUNT    CODE       TRANS FEE         CODE                           
+ ------------ --------------- --- -------- -------------------------- ------- ----------------------- -------                        
+ FIRST PRES.  PURCHASE   ORIG EB         7                  100.19 DR 840-USD                 0.17 CR 840-USD                        
+              PURCHASE   ORIG EW        30                1,250.73 DR 840-USD                14.42 CR 840-USD                        
+              PURCHASE   ORIG YA         1                    3.42 DR 840-USD                 0.06 CR 840-USD                        
+              CREDIT     ORIG EW         3                    1.48 CR 840-USD                 0.01 DR 840-USD                        
+ ------------ --------------- --- -------- -------------------------- ------- ----------------------- -------                        
+ FIRST PRES.  TOTAL                     41                1,352.86 DR 840-USD                14.64 CR 840-USD                        
+                                                                                                                                     
+ INTERREGIONAL                                                                                                                       
+ MASTERCARD SETTLED                                                                                                                  
+ BUSINESS SERVICE ID SUBTOTAL           41                1,352.86 DR 840-USD                14.64 CR 840-USD                        
+1IP727020-AA                                           MASTERCARD WORLDWIDE                                       RUN DATE: 09/05/24 
+ ACCEPTANCE BRAND: MCC                          CLEARING CYCLE 002 - NOTIFICATION                                 PAGE NO:         1 
+ BUSINESS SERVICE LEVEL: INTRAREGIONAL                        2024-09-06                                                             
+ BUSINESS SERVICE ID: 030001                                                                                                         
+ FILE ID: 001/240906/00000023389/02201                                                                                               
+ MEMBER ID: 00000031718                                                                                                              
+                                                                                                                                     
+ MASTERCARD SETTLED                                                     RECON                         FEE                            
+                                                                         CURR                         CURR                           
+ TRANS. FUNC. PROC.CODE       IRD   COUNTS               RECON AMOUNT    CODE       TRANS FEE         CODE                           
+ ------------ --------------- --- -------- -------------------------- ------- ----------------------- -------                        
+ FIRST PRES.  ATM CASH   ORIG 85         5                1,458.32 DR 604-PEN                13.32 DR 604-PEN                        
+ ------------ --------------- --- -------- -------------------------- ------- ----------------------- -------                        
+ FIRST PRES.  TOTAL                      5                1,458.32 DR 604-PEN                13.32 DR 604-PEN                        
+                                                                                                                                     
+ INTRAREGIONAL                                                                                                                       
+ MASTERCARD SETTLED                                                                                                                  
+ BUSINESS SERVICE ID SUBTOTAL            5                1,458.32 DR 604-PEN                13.32 DR 604-PEN                        
+                                                                                                                                     
+                                                                                                                                     
+                                                                         CURR                         CURR                           
+ TRANS. FUNC. PROC.CODE       IRD   COUNTS               RECON AMOUNT    CODE       TRANS FEE         CODE                           
+ ------------ --------------- --- -------- -------------------------- ------- ----------------------- -------                        
+ FIRST PRES.  PURCHASE   ORIG YA         2                   11.12 DR 840-USD                 0.18 CR 840-USD                        
+              PURCHASE   ORIG YD         3                   11.92 DR 840-USD                 0.12 CR 840-USD                        
+ ------------ --------------- --- -------- -------------------------- ------- ----------------------- -------                        
+ FIRST PRES.  TOTAL                      5                   23.04 DR 840-USD                 0.30 CR 840-USD                        
+                                                                                                                                     
+ INTRAREGIONAL                                                                                                                       
+ MASTERCARD SETTLED                                                                                                                  
+ BUSINESS SERVICE ID SUBTOTAL            5                   23.04 DR 840-USD                 0.30 CR 840-USD                        
+1IP727020-AA                                           MASTERCARD WORLDWIDE                                       RUN DATE: 09/05/24 
+ ACCEPTANCE BRAND: MCC                          CLEARING CYCLE 002 - NOTIFICATION                                 PAGE NO:         1 
+ BUSINESS SERVICE LEVEL: INTRACOUNTRY                         2024-09-06                                                             
+ BUSINESS SERVICE ID: 604001                                                                                                         
+ FILE ID: 001/240906/00000023389/02201                                                                                               
+ MEMBER ID: 00000031718                                                                                                              
+                                                                                                                                     
+ MASTERCARD SETTLED                                                     RECON                         FEE                            
+                                                                         CURR                         CURR                           
+ TRANS. FUNC. PROC.CODE       IRD   COUNTS               RECON AMOUNT    CODE       TRANS FEE         CODE                           
+ ------------ --------------- --- -------- -------------------------- ------- ----------------------- -------                        
+ FEE COLL-CSG FEE COL CR ORIG            1                    2.85 DR 604-PEN                    0 CR    -                           
+ ------------ --------------- --- -------- -------------------------- ------- ----------------------- -------                        
+ FEE COLL-CSG TOTAL                      1                    2.85 DR 604-PEN                    0 DR    -                           
+                                                                                                                                     
+ INTRACOUNTRY                                                                                                                        
+ MASTERCARD SETTLED                                                                                                                  
+ BUSINESS SERVICE ID SUBTOTAL            1                    2.85 DR 604-PEN                    0 DR    -                           
+1IP727020-AA                                           MASTERCARD WORLDWIDE                                       RUN DATE: 09/05/24 
+ ACCEPTANCE BRAND: MCC                          CLEARING CYCLE 002 - NOTIFICATION                                 PAGE NO:         1 
+ BUSINESS SERVICE LEVEL: INTERREGIONAL                        2024-09-06                                                             
+ BUSINESS SERVICE ID: 050301                                                                                                         
+ FILE ID: 001/240906/00000023389/02201                                                                                               
+ MEMBER ID: 00000031718                                                                                                              
+                                                                                                                                     
+                                                                                                                                     
+ NON-FINANCIAL DETAIL                              COUNTS                                                                            
+ ORIGINALS:                                                                                                                          
+                FINANCIAL DETAIL ADDENDUM          0000004                                                                           
+1IP727020-AA                                           MASTERCARD WORLDWIDE                                       RUN DATE: 09/05/24 
+                                                CLEARING CYCLE 002 - NOTIFICATION                                 PAGE NO:         1 
+                                                              2024-09-06                                                             
+                                                                                                                                     
+ ACCEPTANCE BRAND : MCC                                                                                                              
+ BUSINESS SERVICE LEVEL :INTERREGIONAL                                                                                               
+ MEMBER ID: 00000031718                                                                                                              
+ CURRENCY CODE : 840-USD                                                                                                             
+                                                                                                                                     
+ BUSINESS                                                                                                                            
+ SERVICE                               ORIG/                                                                                         
+     ID            FILE ID             RVSL          RECON. AMOUNT                   TRANSACTION FEE                                 
+ -------- ---------------------------- ----        -------------------              -------------------                              
+ 010301   001/240906/00000023389/02201 ORIG                 2,706.03 DR                        15.42 DR                              
+ 040301   001/240906/00000023389/02201 ORIG                     6.75 DR                         0.11 CR                              
+ 050301   001/240906/00000023389/02201 ORIG                 1,352.86 DR                        14.64 CR                              
+                                                                                                                                     
+                             GRAND TOTAL                    4,065.64 DR                         0.67 DR                              
+                                                                                                                                     
+ ACCEPTANCE BRAND : MCC                                                                                                              
+ BUSINESS SERVICE LEVEL :INTRAREGIONAL                                                                                               
+ MEMBER ID: 00000031718                                                                                                              
+ CURRENCY CODE : 604-PEN                                                                                                             
+                                                                                                                                     
+ BUSINESS                                                                                                                            
+ SERVICE                               ORIG/                                                                                         
+     ID            FILE ID             RVSL          RECON. AMOUNT                   TRANSACTION FEE                                 
+ -------- ---------------------------- ----        -------------------              -------------------                              
+ 030001   001/240906/00000023389/02201 ORIG                 1,458.32 DR                        13.32 DR                              
+                                                                                                                                     
+                             GRAND TOTAL                    1,458.32 DR                        13.32 DR                              
+                                                                                                                                     
+ ACCEPTANCE BRAND : MCC                                                                                                              
+ BUSINESS SERVICE LEVEL :INTRAREGIONAL                                                                                               
+ MEMBER ID: 00000031718                                                                                                              
+ CURRENCY CODE : 840-USD                                                                                                             
+                                                                                                                                     
+ BUSINESS                                                                                                                            
+ SERVICE                               ORIG/                                                                                         
+     ID            FILE ID             RVSL          RECON. AMOUNT                   TRANSACTION FEE                                 
+ -------- ---------------------------- ----        -------------------              -------------------                              
+ 030001   001/240906/00000023389/02201 ORIG                    23.04 DR                         0.30 CR                              
+                                                                                                                                     
+                             GRAND TOTAL                       23.04 DR                         0.30 CR                              
+                                                                                                                                     
+ ACCEPTANCE BRAND : MCC                                                                                                              
+ BUSINESS SERVICE LEVEL :INTRACOUNTRY                                                                                                
+ MEMBER ID: 00000031718                                                                                                              
+ CURRENCY CODE : 604-PEN                                                                                                             
+                                                                                                                                     
+ BUSINESS                                                                                                                            
+ SERVICE                               ORIG/                                                                                         
+     ID            FILE ID             RVSL          RECON. AMOUNT                   TRANSACTION FEE                                 
+ -------- ---------------------------- ----        -------------------              -------------------                              
+ 604001   001/240906/00000023389/02201 ORIG                     2.85 DR                            0 DR                              
+                                                                                                                                     
+                             GRAND TOTAL                        2.85 DR                         0.00 DR                              
+                                                                                                                                     
+1IP728010-AA                                           MASTERCARD WORLDWIDE                                       RUN DATE: 09/05/24 
+ ACCEPTANCE BRAND: MCC                                    CLEARING CYCLE 002                                      RUN TIME: 21.36.02 
+ BUSINESS SERVICE LEVEL: INTERREGIONAL                        2024-09-06                                          PAGE NO:         1 
+ MEMBER ID: 00000031718                                                                                                              
+ CURRENCY CODE :  840 - USD                                                                                                          
+                                                                                                                                     
+ BUSINESS                                                                                           RECON.                           
+ SERVICE               FILE ID                       FILE ID                      NET RECON          CURR.                           
+    ID              TO MASTERCARD                FROM MASTERCARD                CURRENCY AMOUNT      CODE                            
+ ________   ____________________________   ____________________________   _______________________   _______                          
+  010301                                   001/240906/00000023389/02201               2,706.03 DR   840-USD                          
+  040301                                   001/240906/00000023389/02201                   6.75 DR   840-USD                          
+  050301                                   001/240906/00000023389/02201               1,352.86 DR   840-USD                          
+                                                                                                                                     
+  TOTAL                                                                               4,065.64 DR   840-USD                          
+                                                                                                                                     
+1IP728010-AA                                           MASTERCARD WORLDWIDE                                       RUN DATE: 09/05/24 
+ ACCEPTANCE BRAND: MCC                                    CLEARING CYCLE 002                                      RUN TIME: 21.36.02 
+ BUSINESS SERVICE LEVEL: INTRAREGIONAL                        2024-09-06                                          PAGE NO:         2 
+ MEMBER ID: 00000031718                                                                                                              
+ CURRENCY CODE :  604 - PEN                                                                                                          
+                                                                                                                                     
+ BUSINESS                                                                                           RECON.                           
+ SERVICE               FILE ID                       FILE ID                      NET RECON          CURR.                           
+    ID              TO MASTERCARD                FROM MASTERCARD                CURRENCY AMOUNT      CODE                            
+ ________   ____________________________   ____________________________   _______________________   _______                          
+  030001                                   001/240906/00000023389/02201               1,458.32 DR   604-PEN                          
+                                                                                                                                     
+  TOTAL                                                                               1,458.32 DR   604-PEN                          
+                                                                                                                                     
+ BUSINESS SERVICE LEVEL: INTRAREGIONAL                                                                                               
+ CURRENCY CODE :  840 - USD                                                                                                          
+                                                                                                                                     
+ BUSINESS                                                                                           RECON.                           
+ SERVICE               FILE ID                       FILE ID                      NET RECON          CURR.                           
+    ID              TO MASTERCARD                FROM MASTERCARD                CURRENCY AMOUNT      CODE                            
+ ________   ____________________________   ____________________________   _______________________   _______                          
+  030001                                   001/240906/00000023389/02201                  23.04 DR   840-USD                          
+                                                                                                                                     
+  TOTAL                                                                                  23.04 DR   840-USD                          
+                                                                                                                                     
+1IP728010-AA                                           MASTERCARD WORLDWIDE                                       RUN DATE: 09/05/24 
+ ACCEPTANCE BRAND: MCC                                    CLEARING CYCLE 002                                      RUN TIME: 21.36.02 
+ BUSINESS SERVICE LEVEL: INTRACOUNTRY                         2024-09-06                                          PAGE NO:         3 
+ MEMBER ID: 00000031718                                                                                                              
+ CURRENCY CODE :  604 - PEN                                                                                                          
+                                                                                                                                     
+ BUSINESS                                                                                           RECON.                           
+ SERVICE               FILE ID                       FILE ID                      NET RECON          CURR.                           
+    ID              TO MASTERCARD                FROM MASTERCARD                CURRENCY AMOUNT      CODE                            
+ ________   ____________________________   ____________________________   _______________________   _______                          
+  604001                                   001/240906/00000023389/02201                   2.85 DR   604-PEN                          
+                                                                                                                                     
+  TOTAL                                                                                   2.85 DR   604-PEN                          
+                                                                                                                                     
+1IP728010-AA                                           MASTERCARD WORLDWIDE                                       RUN DATE: 09/05/24 
+ ACCEPTANCE BRAND: MCC                                    CLEARING CYCLE 002 SUMMARY                              RUN TIME: 21.36.02 
+ BUSINESS SERVICE LEVEL: INTERREGIONAL                        2024-09-06                                          PAGE NO:         4 
+ MEMBER ID: 00000031718                                                                                                              
+ CURRENCY CODE :  840 - USD                                                                                                          
+                                                                                                                                     
+                                                                                                    RECON.                           
+  CYCLE                FILE ID                       FILE ID                      NET RECON          CURR.                           
+ ACTIVITY           TO MASTERCARD                FROM MASTERCARD                CURRENCY AMOUNT      CODE                            
+ ________   ____________________________   ____________________________   _______________________   _______                          
+  CYCLE 01                                 001/240906/00000023389/01101               4,614.83 DR   840-USD                          
+  CYCLE 02                                 001/240906/00000023389/02201               4,065.64 DR   840-USD                          
+                                                                                                                                     
+  TOTAL                                                                               8,680.47 DR   840-USD                          
+                                                                                                                                     
+1IP728010-AA                                           MASTERCARD WORLDWIDE                                       RUN DATE: 09/05/24 
+ ACCEPTANCE BRAND: MCC                                    CLEARING CYCLE 002 SUMMARY                              RUN TIME: 21.36.02 
+ BUSINESS SERVICE LEVEL: INTRAREGIONAL                        2024-09-06                                          PAGE NO:         5 
+ MEMBER ID: 00000031718                                                                                                              
+ CURRENCY CODE :  604 - PEN                                                                                                          
+                                                                                                                                     
+                                                                                                    RECON.                           
+  CYCLE                FILE ID                       FILE ID                      NET RECON          CURR.                           
+ ACTIVITY           TO MASTERCARD                FROM MASTERCARD                CURRENCY AMOUNT      CODE                            
+ ________   ____________________________   ____________________________   _______________________   _______                          
+  CYCLE 01                                                                                                                           
+  CYCLE 02                                 001/240906/00000023389/02201               1,458.32 DR   604-PEN                          
+                                                                                                                                     
+  TOTAL                                                                               1,458.32 DR   604-PEN                          
+                                                                                                                                     
+ BUSINESS SERVICE LEVEL: INTRAREGIONAL                                                                                               
+ CURRENCY CODE :  840 - USD                                                                                                          
+                                                                                                                                     
+                                                                                                    RECON.                           
+  CYCLE                FILE ID                       FILE ID                      NET RECON          CURR.                           
+ ACTIVITY           TO MASTERCARD                FROM MASTERCARD                CURRENCY AMOUNT      CODE                            
+ ________   ____________________________   ____________________________   _______________________   _______                          
+  CYCLE 01                                 001/240906/00000023389/01101                 109.89 DR   840-USD                          
+  CYCLE 02                                 001/240906/00000023389/02201                  23.04 DR   840-USD                          
+                                                                                                                                     
+  TOTAL                                                                                 132.93 DR   840-USD                          
+                                                                                                                                     
+1IP728010-AA                                           MASTERCARD WORLDWIDE                                       RUN DATE: 09/05/24 
+ ACCEPTANCE BRAND: MCC                                    CLEARING CYCLE 002 SUMMARY                              RUN TIME: 21.36.02 
+ BUSINESS SERVICE LEVEL: INTRACOUNTRY                         2024-09-06                                          PAGE NO:         6 
+ MEMBER ID: 00000031718                                                                                                              
+ CURRENCY CODE :  604 - PEN                                                                                                          
+                                                                                                                                     
+                                                                                                    RECON.                           
+  CYCLE                FILE ID                       FILE ID                      NET RECON          CURR.                           
+ ACTIVITY           TO MASTERCARD                FROM MASTERCARD                CURRENCY AMOUNT      CODE                            
+ ________   ____________________________   ____________________________   _______________________   _______                          
+  CYCLE 01                                                                                                                           
+  CYCLE 02                                 001/240906/00000023389/02201                   2.85 DR   604-PEN                          
+                                                                                                                                     
+  TOTAL                                                                                   2.85 DR   604-PEN                          
+                                                                                                                                     
+1IP728010-AA                                           MASTERCARD WORLDWIDE                                       RUN DATE: 09/05/24 
+                                                           CLEARING DAY TOTAL                                     RUN TIME: 21.36.02 
+ MEMBER ID: 00000031718                                       2024-09-06                                          PAGE NO:         7 
+                                                                                                                                     
+ CLEARING DAY TOTAL AS OF CLEARING CYCLE  2                                                                                          
+                                                                                                                                     
+              RECONCILIATION          NET RECONCILIATION                                                                             
+              CURRENCY  CODE           CURRENCY AMOUNT                                                                               
+              --------------          ------------------                                                                             
+                604-PEN                      1,461.17 DR                                                                             
+                840-USD                      8,813.40 DR                                                                             
+                                                        ***END OF REPORT***                                                          

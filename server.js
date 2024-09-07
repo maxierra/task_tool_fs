@@ -1,7 +1,13 @@
 const express = require('express');
 const path = require('path');
 const fs = require('fs');
+const multer = require('multer');
+const archiver = require('archiver');
 const bodyParser = require('body-parser');
+const users = require('./users');
+
+
+
 const app = express();
 
 // Configurar EJS como motor de plantillas
@@ -12,8 +18,8 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// Cargar usuarios desde el archivo JSON
-const users = JSON.parse(fs.readFileSync('users.json', 'utf8'));
+// Configurar Multer para la subida de archivos
+const upload = multer({ dest: 'uploads/' });
 
 // Ruta para redirigir la raíz al login
 app.get('/', (req, res) => {
@@ -33,7 +39,6 @@ app.post('/login', (req, res) => {
     if (user) {
         res.redirect('/main');
     } else {
-        // Pasar 'error' a la vista si las credenciales son incorrectas
         res.render('login', { error: 'Credenciales incorrectas' });
     }
 });
@@ -41,11 +46,6 @@ app.post('/login', (req, res) => {
 // Ruta para la página principal
 app.get('/main', (req, res) => {
     res.render('main');
-});
-
-// Rutas adicionales
-app.get('/analisis-casos-rechazados', (req, res) => {
-    res.render('analisis-casos-rechazados-por-mambu');
 });
 
 app.get('/tareas-diarias', (req, res) => {
@@ -56,8 +56,77 @@ app.get('/abu', (req, res) => {
     res.render('abu');
 });
 
-// Configurar el puerto del servidor
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-    console.log(`Servidor corriendo en http://localhost:${PORT}`);
+
+// Rutas adicionales
+app.get('/analisis-casos-rechazados', (req, res) => {
+    res.render('analisis-casos-rechazados-por-mambu');
+});
+
+// Ruta de la página de subir archivos
+app.get('/archivos_zip', (req, res) => {
+    res.render('archivos_zip');  // Renderiza el archivo 'archivos_zip.ejs'
+});
+
+app.post('/upload', upload.array('files'), (req, res) => {
+    const files = req.files;
+    const country = req.body.country;
+
+    if (!files || files.length === 0) {
+        return res.status(400).send('No se seleccionaron archivos.');
+    }
+
+    const currentDate = new Date().toISOString().split('T')[0].replace(/-/g, '');
+    let countrySuffix = country === 'PE' ? 'PE' : 'CH';  // 'CH' por defecto
+    const zipFileName = `${currentDate}_G66_${countrySuffix}_MC.zip`;
+
+    const output = fs.createWriteStream(path.join(__dirname, 'public', zipFileName));
+    const archive = archiver('zip', { zlib: { level: 9 } });
+
+    output.on('close', () => {
+        console.log(`Archivo ZIP creado: ${archive.pointer()} bytes`);
+        res.send(zipFileName); // Enviar el nombre del archivo para que el frontend lo enlace
+    });
+
+    archive.on('error', (err) => {
+        throw err;
+    });
+
+    archive.pipe(output);
+
+    files.forEach((file) => {
+        archive.file(file.path, { name: file.originalname });
+    });
+
+    archive.finalize();
+});
+
+// Ruta para borrar archivos temporales
+app.delete('/clear-uploads', (req, res) => {
+    const uploadsDir = path.join(__dirname, 'uploads');
+
+    fs.readdir(uploadsDir, (err, files) => {
+        if (err) {
+            return res.status(500).send('Error al leer la carpeta de archivos.');
+        }
+
+        if (files.length === 0) {
+            return res.send('No hay archivos para borrar.');
+        }
+
+        files.forEach(file => {
+            fs.unlink(path.join(uploadsDir, file), (err) => {
+                if (err) {
+                    console.error(`Error al eliminar el archivo ${file}: ${err.message}`);
+                }
+            });
+        });
+
+        res.send('Archivos temporales borrados exitosamente.');
+    });
+});
+
+// Puerto y servidor
+const port = 3000;
+app.listen(port, () => {
+    console.log(`Servidor corriendo en http://localhost:${port}`);
 });
