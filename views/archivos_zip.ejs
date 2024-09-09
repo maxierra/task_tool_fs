@@ -128,6 +128,10 @@
                   <option value="PE">Perú</option>
                 </select>
               </div>
+              <div class="mb-3">
+                <label for="creationDate" class="form-label"><i class="fas fa-calendar-alt me-2"></i>Selecciona la fecha de creación:</label>
+                <input type="date" class="form-control" id="creationDate" name="creationDate" required>
+              </div>
               <div class="text-center">
                 <button type="submit" class="btn btn-primary"><i class="fas fa-compress-alt me-2"></i>Crear ZIP</button>
               </div>
@@ -155,11 +159,13 @@
       const formData = new FormData();
       const files = document.getElementById('files').files;
       const country = document.getElementById('country').value;
+      const creationDate = document.getElementById('creationDate').value;
 
       for (let i = 0; i < files.length; i++) {
         formData.append('files', files[i]);
       }
       formData.append('country', country);
+      formData.append('creationDate', creationDate);
 
       try {
         document.getElementById('result').innerHTML = '<div class="spinner-border text-primary" role="status"><span class="visually-hidden">Loading...</span></div>';
@@ -203,13 +209,13 @@
 
         const result = await response.text();
         document.getElementById('result').innerHTML = `
-          <div class="alert alert-info" role="alert">
-            <i class="fas fa-info-circle me-2"></i>${result}
+          <div class="alert alert-success" role="alert">
+            <i class="fas fa-check-circle me-2"></i>Archivos temporales borrados con éxito.
           </div>`;
       } catch (error) {
         document.getElementById('result').innerHTML = `
           <div class="alert alert-danger" role="alert">
-            <i class="fas fa-exclamation-triangle me-2"></i>Error al borrar archivos temporales: ${error.message}
+            <i class="fas fa-exclamation-triangle me-2"></i>Error al borrar los archivos temporales: ${error.message}
           </div>`;
       }
     });
