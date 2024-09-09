@@ -67,38 +67,38 @@ app.get('/archivos_zip', (req, res) => {
     res.render('archivos_zip');  // Renderiza el archivo 'archivos_zip.ejs'
 });
 
+// Endpoint para manejar la subida de archivos y la creación del ZIP
 app.post('/upload', upload.array('files'), (req, res) => {
+    const country = req.body.country; // "CH" o "PE"
+    const creationDate = req.body.creationDate; // Fecha en formato "yyyy-mm-dd"
     const files = req.files;
-    const country = req.body.country;
-
-    if (!files || files.length === 0) {
-        return res.status(400).send('No se seleccionaron archivos.');
+  
+    if (!files.length) {
+      return res.status(400).send('No se seleccionaron archivos.');
     }
-
-    const currentDate = new Date().toISOString().split('T')[0].replace(/-/g, '');
-    let countrySuffix = country === 'PE' ? 'PE' : 'CH';  // 'CH' por defecto
-    const zipFileName = `${currentDate}_G66_${countrySuffix}_MC.zip`;
-
+  
+    // Nombre del archivo ZIP basado en la fecha seleccionada y el país
+    const formattedDate = creationDate.replace(/-/g, ''); // Remover guiones para el nombre del archivo
+    const countrySuffix = country === 'PE' ? 'PE' : 'CH';  // 'CH' por defecto
+    const zipFileName = `${formattedDate}_G66_${countrySuffix}_MC.zip`;
     const output = fs.createWriteStream(path.join(__dirname, 'public', zipFileName));
     const archive = archiver('zip', { zlib: { level: 9 } });
-
+  
     output.on('close', () => {
-        console.log(`Archivo ZIP creado: ${archive.pointer()} bytes`);
-        res.send(zipFileName); // Enviar el nombre del archivo para que el frontend lo enlace
+      console.log(`Archivo ZIP creado: ${zipFileName}`);
+      res.send(zipFileName); // Enviar el nombre del archivo ZIP al cliente
     });
-
-    archive.on('error', (err) => {
-        throw err;
-    });
-
+  
     archive.pipe(output);
-
-    files.forEach((file) => {
-        archive.file(file.path, { name: file.originalname });
+  
+    files.forEach(file => {
+      archive.file(file.path, { name: file.originalname });
     });
-
+  
     archive.finalize();
-});
+  });
+  
+
 
 // Ruta para borrar archivos temporales
 app.delete('/clear-uploads', (req, res) => {
