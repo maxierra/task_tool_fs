@@ -1,105 +1,550 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Visualizador de Tabla</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Generar Tablas desde Textarea</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-        }
-        textarea {
-            width: 100%;
-            height: 150px;
-            margin-bottom: 10px;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 10px;
-            table-layout: fixed; /* Hace que las columnas tengan un ancho fijo */
-        }
-        th, td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-overflow: ellipsis; /* Agrega puntos suspensivos si el texto es demasiado largo */
-            overflow: hidden; /* Oculta el desbordamiento del texto */
-            white-space: nowrap; /* Evita el ajuste de línea dentro de las celdas */
-        }
-        th {
-            background-color: #f2f2f2;
-        }
-        th, td {
-            width: 11%; /* Establece el ancho fijo para cada columna */
-        }
-        td {
-            word-break: break-word; /* Permite el salto de palabra si es necesario */
-        }
+      .table-responsive {
+        max-height: 100vh;
+        overflow-x: auto;
+      }
+
+      table {
+        margin-top: 20px;
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      th {
+        background-color: #007bff;
+        color: white;
+        padding: 10px;
+      }
+
+      td {
+        text-align: left;
+        padding: 10px; /* Aumentar el padding para mayor espacio */
+        border: 1px solid #007bff;
+        white-space: nowrap; /* Mantiene el contenido en una línea */
+        overflow: hidden;
+        max-height: 60px; /* Aumentar la altura máxima */
+        max-width: 200px; /* Aumentar el ancho máximo */
+        text-overflow: ellipsis;
+        cursor: pointer;
+        transition: max-height 0.2s ease-in-out, max-width 0.2s ease-in-out;
+      }
+
+      td.expanded {
+        white-space: normal; /* Permitir múltiples líneas */
+        max-height: none; /* Sin límite en la altura */
+        max-width: none; /* Sin límite en el ancho */
+        overflow: visible; /* Mostrar contenido */
+      }
+
+      .case-container {
+        border: 1px solid #007bff;
+        border-radius: 5px;
+        margin: 20px 0;
+        padding: 10px;
+      }
+
+      .case-title {
+        font-weight: bold;
+        margin-bottom: 5px;
+      }
+
+      .table-title {
+        margin-bottom: 10px;
+        font-weight: bold;
+      }
+
+      .subtable {
+        margin-bottom: 20px;
+      }
     </style>
-</head>
-<body>
-    <%- include('navbar') %>
-    <h1>Visualizador de Tabla</h1>
-    <textarea id="inputText" placeholder="Pega aquí los datos separados por tabulaciones o comas"></textarea>
-    <button onclick="processText()">Mostrar Tabla</button>
-    
-    <table id="dataTable">
-        <thead>
-            <tr>
-                <th>REQUESTMESSAGECOMPLETE</th>
-                <th>RESULTMESSAGECOMPLETE</th>
-                <th>ERRORCODE</th>
-                <th>ERRORSOURCE</th>
-                <th>ERRORREASON</th>
-                <th>BIN</th>
-                <th>DEPOSITACCOUNTID</th>
-                <th>AMOUNT</th>
-                <th>VISATID</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- Las filas de datos se agregarán aquí -->
-        </tbody>
-    </table>
+  </head>
+  <body>
+    <div class="container mt-4">
+      <h2>Pegar Información para Crear Tablas</h2>
+      <textarea
+        id="dataInput"
+        class="form-control mb-3"
+        rows="10"
+        placeholder="Pega tu información aquí..."
+      ></textarea>
+      <button class="btn btn-primary" onclick="generateTables()">
+        Generar Tablas
+      </button>
+      <button class="btn btn-success" onclick="downloadReport()">
+        Descargar Reporte HTML
+      </button>
+
+      <div class="table-responsive mt-4" id="containerTables"></div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
-        function processText() {
-            const text = document.getElementById('inputText').value;
-            const rows = text.trim().split('\n');
-            const tableBody = document.getElementById('dataTable').getElementsByTagName('tbody')[0];
-
-            // Limpiar la tabla antes de agregar nuevos datos
-            tableBody.innerHTML = '';
-
-            // Títulos a ignorar
-            const headers = [
-                'REQUESTMESSAGECOMPLETE',
-                'RESULTMESSAGECOMPLETE',
-                'ERRORCODE',
-                'ERRORSOURCE',
-                'ERRORREASON',
-                'BIN',
-                'DEPOSITACCOUNTID',
-                'AMOUNT',
-                'VISATID'
+        function generateTables() {
+            const data = document.getElementById("dataInput").value;
+            const containerTables = document.getElementById("containerTables");
+        
+            containerTables.innerHTML = "";
+        
+            if (!data.trim()) {
+                alert("Por favor, ingresa algún dato.");
+                return;
+            }
+        
+            const rows = data.split("\n").filter((row) => row.trim());
+        
+            const headerGroups = [
+                [
+                    "PROCESADA",
+                    "MENSAJE",
+                    "TIPOAUTORIZACION",
+                    "OBSERVACION",
+                    "FILENAME",
+                    "FILEPROCEFECHA",
+                    "ROWINFILE",
+                    "DE3",
+                    "DE4",
+                    "DE6",
+                    "DE24",
+                    "DE25",
+                    "DE38",
+                    "DE43",
+                    "DE49",
+                    "DE51",
+                    "DE63",
+                    "AUTOVISATID",
+                    "CTA_INFI",
+                    "AUTO_CODI",
+                    "AUTOFECHA",
+                    "CONSUFECHA",
+                    "CONSUMIPOR",
+                    "AUTOIMPOR",
+                    "ORIGEN_",
+                    "DIFERENCIA",
+                    "DE12",
+                    "DE48",
+                    "MOVIMID",
+                    "MOVIMTIPO",
+                ],
+                [
+                    "CUENTA",
+                    "ADICIONAL",
+                    "NUMEROTARJETA",
+                    "FECHA",
+                    "IMPORTE",
+                    "IMPORTECONFIRMADO",
+                    "INTERNACIONAL",
+                    "IMPORTEORIGINAL",
+                    "MONEDAORIGINAL",
+                    "PLAN",
+                    "CUOTAS",
+                    "CODIGOAUTORIZACION",
+                    "NUMEROCOMERCIO",
+                    "ESTADO",
+                    "FECHAESTADO",
+                    "RELACIONADA",
+                    "NROCUPON",
+                    "ORIGEN",
+                    "RECHAZO",
+                    "ICA",
+                    "TCC",
+                    "REGLAFRAUDE",
+                    "MODOENTRADA",
+                    "TERMINALPOS",
+                    "STANDIN",
+                    "IDAUTORIZACION",
+                    "ESTADOAUTOPOS",
+                    "IDTRANSACCION",
+                    "AUTOID",
+                    "AUTOCODI",
+                    "TIPOAUTO",
+                    "CONSUAUTOCODI",
+                    "FORZADA_MAMBU",
+                    "A_MAMBU",
+                    "RELA_OK",
+                    "ONL_OK",
+                    "AUTOFORZADA",
+                    "STATUSMAMBU",
+                    "MAMBULOGID",
+                    "RECALLID",
+                    "BIN",
+                    "CUENTAEXTERNA",
+                    "MONTOIMPACTADO",
+                    "FEEMAMBU",
+                    "MONEDAORIGEN",
+                    "VISATID",
+                    "ERRORCODE",
+                    "ERRORSOURCE",
+                    "ERRORREASON",
+                ],
+                ["REQUESTMESSAGECOMPLETE", "RESULTMESSAGECOMPLETE"],
             ];
-
-            // Procesar filas
-            rows.forEach(row => {
-                const cells = row.split('\t'); // Asume que los datos están separados por tabulaciones
-                
-                // Verificar si la primera celda es un título conocido
-                if (!headers.includes(cells[0])) {
-                    const newRow = tableBody.insertRow();
-
-                    cells.forEach(cell => {
-                        const newCell = newRow.insertCell();
-                        newCell.textContent = cell;
-                    });
+        
+            const allHeaders = headerGroups.flat();
+        
+            let chileCases = [];
+            let peruCases = [];
+        
+            rows.forEach((row, index) => {
+                const rowData = row.split("\t");
+                const binIndex = allHeaders.indexOf("BIN");
+                const binValue = rowData[binIndex] || "";
+        
+                if (binValue === "555505") {
+                    chileCases.push(rowData);
+                } else if (binValue === "523510") {
+                    peruCases.push(rowData);
                 }
             });
+        
+            const createCaseTable = (caseRow, caseIndex, title) => {
+                const caseContainer = document.createElement("div");
+                caseContainer.classList.add("case-container");
+        
+                const caseTitle = document.createElement("div");
+                caseTitle.classList.add("case-title");
+                caseTitle.textContent = `${title} ${caseIndex + 1}`;
+                caseContainer.appendChild(caseTitle);
+        
+                const extraContainer = document.createElement("div");
+                extraContainer.classList.add("mt-3");
+        
+                const cuentaExternaIndex = allHeaders.indexOf("CUENTAEXTERNA");
+                const montoImpactadoIndex = allHeaders.indexOf("MONTOIMPACTADO");
+                const mensajeIndex = allHeaders.indexOf("MENSAJE");
+        
+                const cuentaExterna = document.createElement("div");
+                cuentaExterna.textContent = `CUENTAEXTERNA: ${
+                    caseRow[cuentaExternaIndex] || ""
+                }`;
+                extraContainer.appendChild(cuentaExterna);
+        
+                const montoImpactado = document.createElement("div");
+                montoImpactado.textContent = `Monto: ${
+                    caseRow[montoImpactadoIndex] || ""
+                }`;
+                extraContainer.appendChild(montoImpactado);
+        
+                const mensaje = document.createElement("div");
+                mensaje.textContent = `MENSAJE: ${caseRow[mensajeIndex] || ""}`;
+                extraContainer.appendChild(mensaje);
+        
+                caseContainer.appendChild(extraContainer);
+        
+                // Intercambiar el orden de las tablas 1 y 2
+                const orderedGroups = [headerGroups[1], headerGroups[0], headerGroups[2]];
+        
+                orderedGroups.forEach((group, groupIndex) => {
+                    const subtable = document.createElement("div");
+                    subtable.classList.add("subtable");
+        
+                    const tableTitle = document.createElement("div");
+                    tableTitle.classList.add("table-title");
+                    tableTitle.textContent = `Tabla ${groupIndex + 1}`;
+                    subtable.appendChild(tableTitle);
+        
+                    const table = document.createElement("table");
+                    table.classList.add(`table-${groupIndex + 1}`); // Agregar clase específica
+                    const thead = document.createElement("thead");
+                    const tbody = document.createElement("tbody");
+        
+                    const headerRow = document.createElement("tr");
+                    group.forEach((header) => {
+                        const th = document.createElement("th");
+                        th.textContent = header;
+                        headerRow.appendChild(th);
+                    });
+                    thead.appendChild(headerRow);
+        
+                    const tr = document.createElement("tr");
+                    group.forEach((header) => {
+                        const td = document.createElement("td");
+                        const dataIndex = allHeaders.indexOf(header);
+                        td.textContent = caseRow[dataIndex] || "";
+                        td.addEventListener("click", () => {
+                            td.classList.toggle("expanded");
+                        });
+                        tr.appendChild(td);
+                    });
+        
+                    tbody.appendChild(tr);
+                    table.appendChild(thead);
+                    table.appendChild(tbody);
+                    subtable.appendChild(table);
+                    caseContainer.appendChild(subtable);
+                });
+        
+                return caseContainer;
+            };
+        
+            chileCases.forEach((caseRow, index) => {
+                const caseTable = createCaseTable(caseRow, index, "Caso Chile");
+                containerTables.appendChild(caseTable);
+            });
+        
+            peruCases.forEach((caseRow, index) => {
+                const caseTable = createCaseTable(caseRow, index, "Caso Perú");
+                containerTables.appendChild(caseTable);
+            });
         }
+        
+        function downloadReport() {
+            const containerTables = document.getElementById("containerTables");
+            const reportContent = containerTables.innerHTML;
+        
+            // Crear un nuevo contenedor temporal para modificar el contenido
+            const tempContainer = document.createElement('div');
+            tempContainer.innerHTML = reportContent;
+        
+            // Definir las columnas a ocultar para cada tipo de tabla
+            const headersToHide = {
+                'table-1': [
+                    "AUTOID", "AUTOCODI", "TIPOAUTO", "CONSUAUTOCODI", "FORZADA_MAMBU",
+                    "A_MAMBU", "RELA_OK", "ONL_OK", "AUTOFORZADA", "STATUSMAMBU",
+                    "MAMBULOGID", "RECALLID", "BIN", "CUENTAEXTERNA", "MONTOIMPACTADO",
+                    "FEEMAMBU", "MONEDAORIGEN", "VISATID", "ERRORCODE", "ERRORSOURCE",
+                    "ERRORREASON"
+                ],
+                'table-2': [
+                    "PROCESADA", "MENSAJE", "TIPOAUTORIZACION", "OBSERVACION", "FILENAME",
+                    "DE12", "DE48", "MOVIMID", "MOVIMTIPO"
+                ]
+            };
+        
+            // Iterar sobre todas las tablas y ocultar las columnas específicas
+            const tables = tempContainer.querySelectorAll('table');
+            tables.forEach((table, index) => {
+                const tableClass = table.classList.contains('table-1') ? 'table-1' : 'table-2';
+                const headers = headersToHide[tableClass];
+        
+                if (headers) {
+                    const headerCells = table.querySelectorAll('th');
+                    const rows = table.querySelectorAll('tr');
+        
+                    // Ocultar las celdas en el encabezado y en las filas
+                    headerCells.forEach((cell, index) => {
+                        if (headers.includes(cell.innerText.trim())) {
+                            cell.style.display = 'none'; // Ocultar celda del encabezado
+                            rows.forEach(row => {
+                                const cells = row.querySelectorAll('td');
+                                if (cells[index]) {
+                                    cells[index].style.display = 'none'; // Ocultar celda en las filas
+                                }
+                            });
+                        }
+                    });
+                }
+        
+                // Agregar clase específica a la tercera tabla
+                if (index === 2) {
+                    table.classList.add('table-3');
+                }
+            });
+        
+            // Agregar contenedores con desplazamiento horizontal para cada tabla
+            tables.forEach(table => {
+                const wrapper = document.createElement('div');
+                wrapper.classList.add('table-wrapper');
+                wrapper.style.overflowX = 'auto';
+                table.parentNode.insertBefore(wrapper, table);
+                wrapper.appendChild(table);
+            });
+        
+            // Obtener la fecha actual en el formato YYYYMMDD
+            const currentDate = new Date();
+            const formattedDate = currentDate.toISOString().split('T')[0].replace(/-/g, '');
+        
+            // Contar los casos de cada país
+            const chileCases = tempContainer.querySelectorAll('.case-container .case-title').length;
+            const peruCases = tempContainer.querySelectorAll('.case-container .case-title').length;
+        
+            // Incluir el CSS y el contenido del reporte
+            const fullReport = `
+                <!DOCTYPE html>
+                <html lang="es">
+                <head>
+                    <meta charset="UTF-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <title>Reporte Generado</title>
+                    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+                    <style>
+                        body {
+                            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+                            margin: 0;
+                            padding: 20px;
+                            min-height: 100vh;
+                        }
+                        .container {
+                            max-width: 1200px;
+                            margin: 0 auto;
+                            background-color: rgba(255, 255, 255, 0.9);
+                            border-radius: 15px;
+                            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+                            padding: 30px;
+                            position: relative;
+                        }
+                        h1 {
+                            color: #2c3e50;
+                            text-align: center;
+                            margin-bottom: 30px;
+                            font-size: 2.5em;
+                            text-transform: uppercase;
+                            letter-spacing: 2px;
+                        }
+                        .table-responsive {
+                            max-height: 80vh;
+                            overflow-x: auto;
+                            margin-bottom: 30px;
+                            border-radius: 10px;
+                            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+                        }
+                        table {
+                            width: 100%;
+                            border-collapse: collapse;
+                            font-size: 10px;
+                            background-color: white;
+                        }
+                        th, td {
+                            padding: 8px 10px;
+                            text-align: left;
+                            vertical-align: middle;
+                            border: 1px solid #e0e0e0;
+                        }
+                        th {
+                            background-color: #3498db;
+                            color: white;
+                            font-weight: bold;
+                            text-transform: uppercase;
+                            letter-spacing: 1px;
+                            font-size: 10px;
+                        }
+                        tr:nth-child(even) {
+                            background-color: #f8f9fa;
+                        }
+                        tr:hover {
+                            background-color: #e9ecef;
+                            transition: background-color 0.3s ease;
+                        }
+                        td {
+                            max-width: 300px;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                            white-space: nowrap;
+                        }
+                        td.expanded {
+                            white-space: normal;
+                            max-width: none;
+                        }
+                        .case-container {
+                            background-color: #ffffff;
+                            border: 1px solid #e0e0e0;
+                            border-radius: 10px;
+                            margin: 20px 0;
+                            padding: 20px;
+                            transition: all 0.3s ease;
+                        }
+                        .case-container:hover {
+                            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+                            transform: translateY(-2px);
+                        }
+                        .case-title {
+                            color: #2c3e50;
+                            font-size: 1.2em;
+                            margin-bottom: 15px;
+                            border-bottom: 2px solid #3498db;
+                            padding-bottom: 10px;
+                        }
+                        .table-title {
+                            color: #34495e;
+                            font-size: 1.1em;
+                            margin-bottom: 15px;
+                            font-weight: 600;
+                        }
+                        .subtable {
+                            margin-bottom: 30px;
+                        }
+                        button {
+                            background-color: #3498db;
+                            color: white;
+                            border: none;
+                            padding: 10px 20px;
+                            border-radius: 5px;
+                            cursor: pointer;
+                            transition: background-color 0.3s ease;
+                        }
+                        button:hover {
+                            background-color: #2980b9;
+                        }
+                        @keyframes fadeIn {
+                            from { opacity: 0; }
+                            to { opacity: 1; }
+                        }
+                        .fade-in {
+                            animation: fadeIn 0.5s ease-in;
+                        }
+                        @media (max-width: 768px) {
+                            .container {
+                                padding: 15px;
+                            }
+                            table {
+                                font-size: 12px;
+                            }
+                            th, td {
+                                padding: 8px 10px;
+                            }
+                        }
+                        .table-wrapper {
+                            overflow-x: auto;
+                            margin-bottom: 20px;
+                        }
+                        .summary-table {
+                            position: absolute;
+                            top: 20px;
+                            right: 20px;
+                            background-color: white;
+                            border: 1px solid #e0e0e0;
+                            border-radius: 5px;
+                            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+                            padding: 10px;
+                        }
+                        .table-3 td {
+                            white-space: normal;
+                            line-height: 1.5;
+                            height: auto;
+                            max-height: 120px; /* Ajusta este valor según sea necesario */
+                            overflow: auto;
+                        }
+                    </style>
+                </head>
+                <body>
+                    <div class="container mt-4">
+                        <h3>Casos detectados en proceso de IPM ${formattedDate}</h3>
+        
+                        ${tempContainer.innerHTML}
+                    </div>
+                </body>
+                </html>
+            `;
+        
+            const blob = new Blob([fullReport], { type: "text/html" });
+            const link = document.createElement("a");
+            link.href = URL.createObjectURL(blob);
+            link.download = "reporte.html";
+            link.click();
+        }
+        
+        
     </script>
-</body>
+  </body>
 </html>
