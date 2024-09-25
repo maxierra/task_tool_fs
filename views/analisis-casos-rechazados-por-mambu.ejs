@@ -104,271 +104,224 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
-      function generateTables() {
-        const data = document.getElementById("dataInput").value;
-        const containerTables = document.getElementById("containerTables");
-
-        containerTables.innerHTML = "";
-
-        if (!data.trim()) {
-          alert("Por favor, ingresa algún dato.");
-          return;
-        }
-
-        const rows = data.split("\n").filter((row) => row.trim());
-
-        const headerGroups = [
-          [
-            "PROCESADA",
-            "MENSAJE",
-            "TIPOAUTORIZACION",
-            "OBSERVACION",
-            "FILENAME",
-            "FILEPROCEFECHA",
-            "ROWINFILE",
-            "DE3",
-            "DE4",
-            "DE6",
-            "DE24",
-            "DE25",
-            "DE38",
-            "DE43",
-            "DE49",
-            "DE51",
-            "DE63",
-            "AUTOVISATID",
-            "CTA_INFI",
-            "AUTO_CODI",
-            "AUTOFECHA",
-            "CONSUFECHA",
-            "CONSUMIPOR",
-            "AUTOIMPOR",
-            "ORIGEN_",
-            "DIFERENCIA",
-            "DE12",
-            "DE48",
-            "MOVIMID",
-            "MOVIMTIPO",
-          ],
-          [
-            "CUENTA",
-            "ADICIONAL",
-            "NUMEROTARJETA",
-            "FECHA",
-            "IMPORTE",
-            "IMPORTECONFIRMADO",
-            "INTERNACIONAL",
-            "IMPORTEORIGINAL",
-            "MONEDAORIGINAL",
-            "PLAN",
-            "CUOTAS",
-            "CODIGOAUTORIZACION",
-            "NUMEROCOMERCIO",
-            "ESTADO",
-            "FECHAESTADO",
-            "RELACIONADA",
-            "NROCUPON",
-            "ORIGEN",
-            "RECHAZO",
-            "ICA",
-            "TCC",
-            "REGLAFRAUDE",
-            "MODOENTRADA",
-            "TERMINALPOS",
-            "STANDIN",
-            "IDAUTORIZACION",
-            "ESTADOAUTOPOS",
-            "IDTRANSACCION",
-            "AUTOID",
-            "AUTOCODI",
-            "TIPOAUTO",
-            "CONSUAUTOCODI",
-            "FORZADA_MAMBU",
-            "A_MAMBU",
-            "RELA_OK",
-            "ONL_OK",
-            "AUTOFORZADA",
-            "STATUSMAMBU",
-            "MAMBULOGID",
-            "RECALLID",
-            "BIN",
-            "CUENTAEXTERNA",
-            "MONTOIMPACTADO",
-            "FEEMAMBU",
-            "MONEDAORIGEN",
-            "VISATID",
-            "ERRORCODE",
-            "ERRORSOURCE",
-            "ERRORREASON",
-          ],
-          ["REQUESTMESSAGECOMPLETE", "RESULTMESSAGECOMPLETE"],
-        ];
-
-        const allHeaders = headerGroups.flat();
-
-        let chileCases = [];
-        let peruCases = [];
-
-        rows.forEach((row, index) => {
-          const rowData = row.split("\t");
-          const binIndex = allHeaders.indexOf("BIN");
-          const binValue = rowData[binIndex] || "";
-
-          if (binValue === "555505") {
-            chileCases.push(rowData);
-          } else if (binValue === "523510") {
-            peruCases.push(rowData);
+        function generateTables() {
+            const data = document.getElementById("dataInput").value;
+            const containerTables = document.getElementById("containerTables");
+          
+            containerTables.innerHTML = "";
+          
+            if (!data.trim()) {
+              alert("Por favor, ingresa algún dato.");
+              return;
+            }
+          
+            const rows = data.split("\n").filter((row) => row.trim());
+          
+            const headerGroups = [
+              [
+                "PROCESADA", "MENSAJE", "TIPOAUTORIZACION", "OBSERVACION", "FILENAME", 
+                "FILEPROCEFECHA", "ROWINFILE", "DE3", "DE4", "DE6", "DE24", "DE25", "DE38", 
+                "DE43", "DE49", "DE51", "DE63", "AUTOVISATID", "CTA_INFI", "AUTO_CODI", 
+                "AUTOFECHA", "CONSUFECHA", "CONSUMIPOR", "AUTOIMPOR", "ORIGEN_", "DIFERENCIA", 
+                "DE12", "DE48", "MOVIMID", "MOVIMTIPO"
+              ],
+              [
+                "CUENTA", "ADICIONAL", "NUMEROTARJETA", "FECHA", "IMPORTE", 
+                "IMPORTECONFIRMADO", "INTERNACIONAL", "IMPORTEORIGINAL", "MONEDAORIGINAL", 
+                "PLAN", "CUOTAS", "CODIGOAUTORIZACION", "NUMEROCOMERCIO", "ESTADO", 
+                "FECHAESTADO", "RELACIONADA", "NROCUPON", "ORIGEN", "RECHAZO", "ICA", 
+                "TCC", "REGLAFRAUDE", "MODOENTRADA", "TERMINALPOS", "STANDIN", 
+                "IDAUTORIZACION", "ESTADOAUTOPOS", "IDTRANSACCION", "AUTOID", 
+                "AUTOCODI", "TIPOAUTO", "CONSUAUTOCODI", "FORZADA_MAMBU", "A_MAMBU", 
+                "RELA_OK", "ONL_OK", "AUTOFORZADA", "STATUSMAMBU", "MAMBULOGID", 
+                "RECALLID", "BIN", "CUENTAEXTERNA", "MONTOIMPACTADO", "FEEMAMBU", 
+                "MONEDAORIGEN", "VISATID", "ERRORCODE", "ERRORSOURCE", "ERRORREASON"
+              ],
+              ["REQUESTMESSAGECOMPLETE", "RESULTMESSAGECOMPLETE"],
+            ];
+          
+            const allHeaders = headerGroups.flat();
+          
+            let chileCases = [];
+            let peruCases = [];
+          
+            // Separar los casos por BIN
+            rows.forEach((row) => {
+              const rowData = row.split("\t");
+              const binIndex = allHeaders.indexOf("BIN");
+              const binValue = rowData[binIndex] || "";
+          
+              if (binValue === "555505") {
+                chileCases.push(rowData);
+              } else if (binValue === "523510") {
+                peruCases.push(rowData);
+              }
+            });
+          
+            // Función para agrupar por CUENTAEXTERNA y ordenar por AUTOVISATID
+            const groupAndSortCases = (cases) => {
+              const cuentaExternaIndex = allHeaders.indexOf("CUENTAEXTERNA");
+              const autoVisatIdIndex = allHeaders.indexOf("AUTOVISATID");
+          
+              // Agrupar por CUENTAEXTERNA
+              let groupedCases = cases.reduce((groups, rowData) => {
+                const cuentaExterna = rowData[cuentaExternaIndex] || "SIN CUENTAEXTERNA";
+                if (!groups[cuentaExterna]) {
+                  groups[cuentaExterna] = [];
+                }
+                groups[cuentaExterna].push(rowData);
+                return groups;
+              }, {});
+          
+              // Ordenar por CUENTAEXTERNA
+              const sortedGroups = Object.keys(groupedCases).sort().reduce((sorted, key) => {
+                sorted[key] = groupedCases[key];
+                return sorted;
+              }, {});
+          
+              // Dentro de cada grupo, ordenar por AUTOVISATID
+              Object.keys(sortedGroups).forEach((key) => {
+                sortedGroups[key].sort((a, b) => {
+                  const autoVisatIdA = a[autoVisatIdIndex] || "";
+                  const autoVisatIdB = b[autoVisatIdIndex] || "";
+                  return autoVisatIdA.localeCompare(autoVisatIdB);
+                });
+              });
+          
+              // Convertir de objeto a array de filas ordenadas
+              return Object.values(sortedGroups).flat();
+            };
+          
+            chileCases = groupAndSortCases(chileCases);
+            peruCases = groupAndSortCases(peruCases);
+          
+            const updateSummary = (caseRow, caseContainer) => {
+              const cuentaExternaIndex = allHeaders.indexOf("CUENTAEXTERNA");
+              const montoImpactadoIndex = allHeaders.indexOf("MONTOIMPACTADO");
+              const mensajeIndex = allHeaders.indexOf("MENSAJE");
+              const origenIndex = allHeaders.indexOf("ORIGEN");
+          
+              const cuentaExterna = caseContainer.querySelector(".cuentaExterna");
+              const montoImpactado = caseContainer.querySelector(".montoImpactado");
+              const mensaje = caseContainer.querySelector(".mensaje");
+              const origen = caseContainer.querySelector(".origen");
+          
+              cuentaExterna.textContent = `CUENTAEXTERNA: ${caseRow[cuentaExternaIndex] || ""}`;
+              montoImpactado.textContent = `Monto: ${caseRow[montoImpactadoIndex] || ""}`;
+              mensaje.textContent = `MENSAJE: ${caseRow[mensajeIndex] || ""}`;
+              origen.textContent = `ORIGEN: ${caseRow[origenIndex] || ""}`;
+            };
+          
+            const createCaseTable = (caseRow, caseIndex, title) => {
+              const caseContainer = document.createElement("div");
+              caseContainer.classList.add("case-container");
+          
+              const caseTitle = document.createElement("div");
+              caseTitle.classList.add("case-title");
+              caseTitle.textContent = `${title} ${caseIndex + 1}`;
+              caseContainer.appendChild(caseTitle);
+          
+              const extraContainer = document.createElement("div");
+              extraContainer.classList.add("mt-3");
+          
+              const cuentaExterna = document.createElement("div");
+              cuentaExterna.classList.add("cuentaExterna");
+              extraContainer.appendChild(cuentaExterna);
+          
+              const montoImpactado = document.createElement("div");
+              montoImpactado.classList.add("montoImpactado");
+              extraContainer.appendChild(montoImpactado);
+          
+              const mensaje = document.createElement("div");
+              mensaje.classList.add("mensaje");
+              extraContainer.appendChild(mensaje);
+          
+              const origen = document.createElement("div");
+              origen.classList.add("origen");
+              extraContainer.appendChild(origen);
+          
+              caseContainer.appendChild(extraContainer);
+          
+              const orderedGroups = [headerGroups[1], headerGroups[0], headerGroups[2]];
+          
+              orderedGroups.forEach((group, groupIndex) => {
+                const subtable = document.createElement("div");
+                subtable.classList.add("subtable", "table-responsive");
+          
+                const tableTitle = document.createElement("div");
+                tableTitle.classList.add("table-title");
+                tableTitle.textContent = `Tabla ${groupIndex + 1}`;
+                subtable.appendChild(tableTitle);
+          
+                const table = document.createElement("table");
+                table.classList.add(`table-${groupIndex + 1}`, "table");
+                const thead = document.createElement("thead");
+                const tbody = document.createElement("tbody");
+          
+                const headerRow = document.createElement("tr");
+                group.forEach((header) => {
+                  const th = document.createElement("th");
+                  th.textContent = header;
+                  headerRow.appendChild(th);
+                });
+                thead.appendChild(headerRow);
+          
+                const tr = document.createElement("tr");
+                group.forEach((header) => {
+                  const td = document.createElement("td");
+                  const dataIndex = allHeaders.indexOf(header);
+                  td.textContent = caseRow[dataIndex] || "";
+          
+                  td.contentEditable = true;
+                  td.style.whiteSpace = "nowrap";
+                  td.style.overflow = "hidden";
+                  td.style.maxHeight = "60px";
+                  td.style.maxWidth = "200px";
+                  td.style.textOverflow = "ellipsis";
+                  td.style.cursor = "pointer";
+          
+                  td.addEventListener("click", () => {
+                    if (td.style.whiteSpace === "nowrap") {
+                      td.style.whiteSpace = "normal";
+                      td.style.maxHeight = "none";
+                      td.style.maxWidth = "none";
+                      td.style.overflow = "visible";
+                    } else {
+                      td.style.whiteSpace = "nowrap";
+                      td.style.maxHeight = "60px";
+                      td.style.maxWidth = "200px";
+                      td.style.overflow = "hidden";
+                    }
+                  });
+          
+                  tr.appendChild(td);
+                });
+                tbody.appendChild(tr);
+          
+                table.appendChild(thead);
+                table.appendChild(tbody);
+                subtable.appendChild(table);
+                caseContainer.appendChild(subtable);
+              });
+          
+              updateSummary(caseRow, caseContainer);
+          
+              return caseContainer;
+            };
+          
+            // Generar tablas para Chile
+            chileCases.forEach((chileCase, caseIndex) => {
+              const caseContainer = createCaseTable(chileCase, caseIndex, "Caso Chile");
+              containerTables.appendChild(caseContainer);
+            });
+          
+            // Generar tablas para Perú
+            peruCases.forEach((peruCase, caseIndex) => {
+              const caseContainer = createCaseTable(peruCase, caseIndex, "Caso Perú");
+              containerTables.appendChild(caseContainer);
+            });
           }
-        });
-
-        const updateSummary = (caseRow, caseContainer) => {
-          const cuentaExternaIndex = allHeaders.indexOf("CUENTAEXTERNA");
-          const montoImpactadoIndex = allHeaders.indexOf("MONTOIMPACTADO");
-          const mensajeIndex = allHeaders.indexOf("MENSAJE");
-          const origenIndex = allHeaders.indexOf("ORIGEN"); // Índice de ORIGEN
-
-          const cuentaExterna = caseContainer.querySelector(".cuentaExterna");
-          const montoImpactado = caseContainer.querySelector(".montoImpactado");
-          const mensaje = caseContainer.querySelector(".mensaje");
-          const origen = caseContainer.querySelector(".origen"); // Agregar la referencia a ORIGEN
-
-          cuentaExterna.textContent = `CUENTAEXTERNA: ${caseRow[cuentaExternaIndex] || ""}`;
-          montoImpactado.textContent = `Monto: ${caseRow[montoImpactadoIndex] || ""}`;
-          mensaje.textContent = `MENSAJE: ${caseRow[mensajeIndex] || ""}`;
-          origen.textContent = `ORIGEN: ${caseRow[origenIndex] || ""}`; // Actualiza el texto de ORIGEN
-        };
-
-        const createCaseTable = (caseRow, caseIndex, title) => {
-          const caseContainer = document.createElement("div");
-          caseContainer.classList.add("case-container");
-
-          const caseTitle = document.createElement("div");
-          caseTitle.classList.add("case-title");
-          caseTitle.textContent = `${title} ${caseIndex + 1}`;
-          caseContainer.appendChild(caseTitle);
-
-          const extraContainer = document.createElement("div");
-          extraContainer.classList.add("mt-3");
-
-          const cuentaExterna = document.createElement("div");
-          cuentaExterna.classList.add("cuentaExterna");
-          extraContainer.appendChild(cuentaExterna);
-
-          const montoImpactado = document.createElement("div");
-          montoImpactado.classList.add("montoImpactado");
-          extraContainer.appendChild(montoImpactado);
-
-          const mensaje = document.createElement("div");
-          mensaje.classList.add("mensaje");
-          extraContainer.appendChild(mensaje);
-
-          const origen = document.createElement("div"); // Crear un nuevo div para ORIGEN
-          origen.classList.add("origen");
-          extraContainer.appendChild(origen); // Agregar al contenedor
-
-          caseContainer.appendChild(extraContainer);
-
-          const orderedGroups = [headerGroups[1], headerGroups[0], headerGroups[2]];
-
-          orderedGroups.forEach((group, groupIndex) => {
-            const subtable = document.createElement("div");
-            subtable.classList.add("subtable", "table-responsive"); // Añadimos scroll horizontal
-
-            const tableTitle = document.createElement("div");
-            tableTitle.classList.add("table-title");
-            tableTitle.textContent = `Tabla ${groupIndex + 1}`;
-            subtable.appendChild(tableTitle);
-
-            const table = document.createElement("table");
-            table.classList.add(`table-${groupIndex + 1}`, "table");
-            const thead = document.createElement("thead");
-            const tbody = document.createElement("tbody");
-
-            const headerRow = document.createElement("tr");
-            group.forEach((header) => {
-              const th = document.createElement("th");
-              th.textContent = header;
-              headerRow.appendChild(th);
-            });
-            thead.appendChild(headerRow);
-
-            const tr = document.createElement("tr");
-group.forEach((header) => {
-    const td = document.createElement("td");
-    const dataIndex = allHeaders.indexOf(header);
-    
-    td.textContent = caseRow[dataIndex] || "";
-    
-    // Hacer que la celda sea editable
-    td.contentEditable = true;
-
-    // Establecer los estilos en línea para colapsar por defecto
-    td.style.whiteSpace = "nowrap";
-    td.style.overflow = "hidden";
-    td.style.maxHeight = "60px";
-    td.style.maxWidth = "200px";
-    td.style.textOverflow = "ellipsis";
-    td.style.cursor = "pointer";
-    
-    // Agregar un evento de clic para expandir la celda
-    td.addEventListener("click", () => {
-        if (td.style.whiteSpace === "nowrap") {
-            // Expande la celda
-            td.style.whiteSpace = "normal";
-            td.style.maxHeight = "none";
-            td.style.maxWidth = "none";
-            td.style.overflow = "visible";
-        } else {
-            // Colapsa la celda
-            td.style.whiteSpace = "nowrap";
-            td.style.maxHeight = "60px";
-            td.style.maxWidth = "200px";
-            td.style.overflow = "hidden";
-        }
-    });
-
-              // Expande y selecciona el contenido de la celda al hacer clic
-              td.addEventListener("focus", function () {
-                const range = document.createRange();
-                range.selectNodeContents(td);
-                const sel = window.getSelection();
-                sel.removeAllRanges();
-                sel.addRange(range);
-              });
-
-              // Actualizar el resumen al modificar una celda
-              td.addEventListener("input", () => {
-                caseRow[dataIndex] = td.textContent;
-                updateSummary(caseRow, caseContainer);
-              });
-
-              tr.appendChild(td);
-            });
-
-            tbody.appendChild(tr);
-            table.appendChild(thead);
-            table.appendChild(tbody);
-            subtable.appendChild(table);
-            caseContainer.appendChild(subtable);
-          });
-
-          updateSummary(caseRow, caseContainer); // Inicializa el resumen con los valores originales
-
-          return caseContainer;
-        };
-
-        chileCases.forEach((caseRow, index) => {
-          const caseTable = createCaseTable(caseRow, index, "Caso Chile");
-          containerTables.appendChild(caseTable);
-        });
-
-        peruCases.forEach((caseRow, index) => {
-          const caseTable = createCaseTable(caseRow, index, "Caso Perú");
-          containerTables.appendChild(caseTable);
-        });
-      }
-
-       
+          
       function generateAnulacionesTable() {
         const data = document.getElementById("anulacionesInput").value;
         const anulacionesTable = document.getElementById("anulacionesTable");
@@ -481,7 +434,7 @@ group.forEach((header) => {
             ],
             'table-2': [
                 "PROCESADA", "MENSAJE", "TIPOAUTORIZACION", "OBSERVACION", "FILENAME",
-                "DE12", "DE48", "MOVIMID", "MOVIMTIPO"
+                "DE12", "DE48", "MOVIMID", "MOVIMTIPO","ROWINFILE"
             ]
         };
     
