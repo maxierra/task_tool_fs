@@ -21,10 +21,11 @@
       }
 
       th {
-        background-color: #007bff;
-        color: white;
+        background-color: #007bff !important; /* Fondo azul */
+        color: white !important; /* Texto blanco */
         padding: 10px;
-      }
+    }
+    
 
       td {
         text-align: left;
@@ -85,11 +86,15 @@
       </button>
 
       <div class="table-responsive mt-4" id="containerTables"></div>
+<div id="modifiedDataContainer"></div>
+
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
+       
+    
         function generateTables() {
             const data = document.getElementById("dataInput").value;
             const containerTables = document.getElementById("containerTables");
@@ -207,6 +212,23 @@
                 }
             });
         
+            const updateSummary = (caseRow, caseContainer) => {
+                const cuentaExternaIndex = allHeaders.indexOf("CUENTAEXTERNA");
+                const montoImpactadoIndex = allHeaders.indexOf("MONTOIMPACTADO");
+                const mensajeIndex = allHeaders.indexOf("MENSAJE");
+                const origenIndex = allHeaders.indexOf("ORIGEN"); // Índice de ORIGEN
+        
+                const cuentaExterna = caseContainer.querySelector(".cuentaExterna");
+                const montoImpactado = caseContainer.querySelector(".montoImpactado");
+                const mensaje = caseContainer.querySelector(".mensaje");
+                const origen = caseContainer.querySelector(".origen"); // Agregar la referencia a ORIGEN
+        
+                cuentaExterna.textContent = `CUENTAEXTERNA: ${caseRow[cuentaExternaIndex] || ""}`;
+                montoImpactado.textContent = `Monto: ${caseRow[montoImpactadoIndex] || ""}`;
+                mensaje.textContent = `MENSAJE: ${caseRow[mensajeIndex] || ""}`;
+                origen.textContent = `ORIGEN: ${caseRow[origenIndex] || ""}`; // Actualiza el texto de ORIGEN
+            };
+        
             const createCaseTable = (caseRow, caseIndex, title) => {
                 const caseContainer = document.createElement("div");
                 caseContainer.classList.add("case-container");
@@ -219,34 +241,29 @@
                 const extraContainer = document.createElement("div");
                 extraContainer.classList.add("mt-3");
         
-                const cuentaExternaIndex = allHeaders.indexOf("CUENTAEXTERNA");
-                const montoImpactadoIndex = allHeaders.indexOf("MONTOIMPACTADO");
-                const mensajeIndex = allHeaders.indexOf("MENSAJE");
-        
                 const cuentaExterna = document.createElement("div");
-                cuentaExterna.textContent = `CUENTAEXTERNA: ${
-                    caseRow[cuentaExternaIndex] || ""
-                }`;
+                cuentaExterna.classList.add("cuentaExterna");
                 extraContainer.appendChild(cuentaExterna);
         
                 const montoImpactado = document.createElement("div");
-                montoImpactado.textContent = `Monto: ${
-                    caseRow[montoImpactadoIndex] || ""
-                }`;
+                montoImpactado.classList.add("montoImpactado");
                 extraContainer.appendChild(montoImpactado);
         
                 const mensaje = document.createElement("div");
-                mensaje.textContent = `MENSAJE: ${caseRow[mensajeIndex] || ""}`;
+                mensaje.classList.add("mensaje");
                 extraContainer.appendChild(mensaje);
+        
+                const origen = document.createElement("div"); // Crear un nuevo div para ORIGEN
+                origen.classList.add("origen");
+                extraContainer.appendChild(origen); // Agregar al contenedor
         
                 caseContainer.appendChild(extraContainer);
         
-                // Intercambiar el orden de las tablas 1 y 2
                 const orderedGroups = [headerGroups[1], headerGroups[0], headerGroups[2]];
         
                 orderedGroups.forEach((group, groupIndex) => {
                     const subtable = document.createElement("div");
-                    subtable.classList.add("subtable");
+                    subtable.classList.add("subtable", "table-responsive"); // Añadimos scroll horizontal
         
                     const tableTitle = document.createElement("div");
                     tableTitle.classList.add("table-title");
@@ -254,7 +271,7 @@
                     subtable.appendChild(tableTitle);
         
                     const table = document.createElement("table");
-                    table.classList.add(`table-${groupIndex + 1}`); // Agregar clase específica
+                    table.classList.add(`table-${groupIndex + 1}`, "table");
                     const thead = document.createElement("thead");
                     const tbody = document.createElement("tbody");
         
@@ -271,9 +288,23 @@
                         const td = document.createElement("td");
                         const dataIndex = allHeaders.indexOf(header);
                         td.textContent = caseRow[dataIndex] || "";
-                        td.addEventListener("click", () => {
-                            td.classList.toggle("expanded");
+                        td.contentEditable = true; // Hace editable las celdas
+        
+                        // Expande y selecciona el contenido de la celda al hacer clic
+                        td.addEventListener("focus", function () {
+                            const range = document.createRange();
+                            range.selectNodeContents(td);
+                            const sel = window.getSelection();
+                            sel.removeAllRanges();
+                            sel.addRange(range);
                         });
+        
+                        // Actualizar el resumen al modificar una celda
+                        td.addEventListener("input", () => {
+                            caseRow[dataIndex] = td.textContent;
+                            updateSummary(caseRow, caseContainer);
+                        });
+        
                         tr.appendChild(td);
                     });
         
@@ -283,6 +314,8 @@
                     subtable.appendChild(table);
                     caseContainer.appendChild(subtable);
                 });
+        
+                updateSummary(caseRow, caseContainer); // Inicializa el resumen con los valores originales
         
                 return caseContainer;
             };
@@ -298,6 +331,8 @@
             });
         }
         
+
+
         function downloadReport() {
             const containerTables = document.getElementById("containerTables");
             const reportContent = containerTables.innerHTML;
@@ -421,14 +456,15 @@
                             vertical-align: middle;
                             border: 1px solid #e0e0e0;
                         }
-                        th {
-                            background-color: #3498db;
-                            color: white;
-                            font-weight: bold;
-                            text-transform: uppercase;
-                            letter-spacing: 1px;
-                            font-size: 10px;
+                     th {
+                          background-color: #007bff !important; /* Fondo azul */
+                          color: white !important; /* Texto blanco */
+                          font-weight: bold !important;
+                          text-transform: uppercase !important;
+                          letter-spacing: 1px !important;
+                          font-size: 10px !important;
                         }
+
                         tr:nth-child(even) {
                             background-color: #f8f9fa;
                         }
