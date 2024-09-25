@@ -40,11 +40,11 @@
       }
 
       td.expanded {
-        white-space: normal; /* Permitir múltiples líneas */
-        max-height: none; /* Sin límite en la altura */
-        max-width: none; /* Sin límite en el ancho */
-        overflow: visible; /* Mostrar contenido */
-      }
+        white-space: normal !important; /* Permitir múltiples líneas */
+        max-height: none !important; /* Sin límite en la altura */
+        max-width: none !important; /* Sin límite en el ancho */
+        overflow: visible !important; /* Mostrar todo el contenido */
+    }
 
       .case-container {
         border: 1px solid #007bff;
@@ -293,11 +293,39 @@
             thead.appendChild(headerRow);
 
             const tr = document.createElement("tr");
-            group.forEach((header) => {
-              const td = document.createElement("td");
-              const dataIndex = allHeaders.indexOf(header);
-              td.textContent = caseRow[dataIndex] || "";
-              td.contentEditable = true; // Hace editable las celdas
+group.forEach((header) => {
+    const td = document.createElement("td");
+    const dataIndex = allHeaders.indexOf(header);
+    
+    td.textContent = caseRow[dataIndex] || "";
+    
+    // Hacer que la celda sea editable
+    td.contentEditable = true;
+
+    // Establecer los estilos en línea para colapsar por defecto
+    td.style.whiteSpace = "nowrap";
+    td.style.overflow = "hidden";
+    td.style.maxHeight = "60px";
+    td.style.maxWidth = "200px";
+    td.style.textOverflow = "ellipsis";
+    td.style.cursor = "pointer";
+    
+    // Agregar un evento de clic para expandir la celda
+    td.addEventListener("click", () => {
+        if (td.style.whiteSpace === "nowrap") {
+            // Expande la celda
+            td.style.whiteSpace = "normal";
+            td.style.maxHeight = "none";
+            td.style.maxWidth = "none";
+            td.style.overflow = "visible";
+        } else {
+            // Colapsa la celda
+            td.style.whiteSpace = "nowrap";
+            td.style.maxHeight = "60px";
+            td.style.maxWidth = "200px";
+            td.style.overflow = "hidden";
+        }
+    });
 
               // Expande y selecciona el contenido de la celda al hacer clic
               td.addEventListener("focus", function () {
