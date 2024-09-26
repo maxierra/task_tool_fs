@@ -104,7 +104,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
-      function generateTables() {
+        
+        function generateTables() {
         const data = document.getElementById("dataInput").value;
         const containerTables = document.getElementById("containerTables");
       
@@ -311,9 +312,8 @@
         });
       }
         
-     
-     
-      function generateAnulacionesTable() {
+       
+        function generateAnulacionesTable() {
         const data = document.getElementById("anulacionesInput").value;
         const anulacionesTable = document.getElementById("anulacionesTable");
     
@@ -324,31 +324,26 @@
             return;
         }
     
+        // Separar las filas del contenido ingresado
         const rows = data.split("\n").filter((row) => row.trim());
     
-        const headers = [
-            "TipoAutorizacion",
-            "Hora_Autorizacion",
-            "Estado",
-            "Hora_Intervencion",
-            "Usuario",
-            "AUTOCODI",
-            "PAN",
-            "Cta.Infinitus",
-            "Cuenta.Mambu",
-            "CardReferenceToken",
-            "MontoLocal",
-            "MonedaLocal",
-            "MontoOrigen",
-            "MonedaOrigen",
-            "Comercio",
-            "PaisComercio",
-            "CiudadComercio",
-            "MCC",
-            "VISA_TID",
-            "Internacional",
-            "RTA_MAMBU",
-        ];
+        // Definir los títulos y detectar si vienen de forma vertical (si las primeras filas son cortas)
+        let dataStartIndex = 0;
+        const headers = [];
+    
+        for (let i = 0; i < rows.length; i++) {
+            if (rows[i].includes("\t")) {
+                // Si encontramos una fila con tabuladores, asumimos que es el inicio de los datos tabulares
+                dataStartIndex = i;
+                break;
+            } else {
+                // Guardamos los títulos verticales
+                headers.push(rows[i]);
+            }
+        }
+    
+        // Extraer las filas de datos desde el índice detectado
+        const dataRows = rows.slice(dataStartIndex); // Omitimos las filas de títulos
     
         // Crear un contenedor para el título y la tabla
         const tableContainer = document.createElement("div");
@@ -356,7 +351,7 @@
         // Crear el título de la tabla
         const tableTitle = document.createElement("div");
         tableTitle.classList.add("table-title");
-        tableTitle.textContent = "Tabla de evidencia de anulaciones / confirmaciones manual "; // Cambia este texto según lo que necesites
+        tableTitle.textContent = "Tabla de evidencia de anulaciones / confirmaciones manual";
         tableContainer.appendChild(tableTitle);
     
         // Crear la tabla
@@ -365,6 +360,7 @@
         const thead = document.createElement("thead");
         const tbody = document.createElement("tbody");
     
+        // Crear fila de encabezados (extraídos en vertical)
         const headerRow = document.createElement("tr");
         headers.forEach((header) => {
             const th = document.createElement("th");
@@ -373,14 +369,15 @@
         });
         thead.appendChild(headerRow);
     
-        rows.forEach((row) => {
+        // Crear las filas de datos
+        dataRows.forEach((row) => {
             const rowData = row.split("\t");
             const tr = document.createElement("tr");
     
             rowData.forEach((cell, index) => {
                 const td = document.createElement("td");
     
-                // Verificar si es la columna "RTA_MAMBU" (índice 20) y si está vacía o nula
+                // Verificar si es la columna "RTA_MAMBU" (índice 20) y está vacía
                 if (index === 20 && (!cell || cell.trim() === "")) {
                     td.textContent = "N/A";  // Asignar "N/A" si está vacío
                 } else {
@@ -403,8 +400,8 @@
         anulacionesTable.appendChild(tableContainer);
     }
     
-
-    function downloadReport() {
+      
+       function downloadReport() {
       const containerTables = document.getElementById("containerTables");
       const anulacionesTable = document.getElementById("anulacionesTable");
       const reportContent = containerTables.innerHTML + anulacionesTable.innerHTML;
@@ -416,14 +413,13 @@
       // Definir las columnas a ocultar para cada tipo de tabla
       const headersToHide = {
           'table-1': [
-              "PROCESADA", "MENSAJE", "TIPOAUTORIZACION", "OBSERVACION", "FILENAME",
-              "DE12", "DE48", "MOVIMID", "MOVIMTIPO", "ROWINFILE", "FeeMambu", "MAMBULOGID", "RECALLID",
+              "PROCESADA", "MENSAJE", "TIPOAUTORIZACION", "OBSERVACION", "FILENAME", "DE12", "DE48", "MOVIMID", "MOVIMTIPO", "ROWINFILE", "FeeMambu", "MAMBULOGID", "RECALLID",
           ],
           'table-2': [
               "AUTOID", "AUTOCODI", "TIPOAUTO", "CONSUAUTOCODI", "FORZADA_MAMBU",
               "A_MAMBU", "RELA_OK", "ONL_OK", "AUTOFORZADA", "STATUSMAMBU",
               "MAMBULOGID", "RECALLID", "Bin", "CuentaExterna", "MontoImpactado",
-              "FEEMAMBU", "MonedaOrigen", "visaTID", "PROCESADA", "MENSAJE", "TIPOAUTORIZACION", "OBSERVACION", "FeeMambu", "FILENAME", "ROWINFILE",
+              "FEEMAMBU", "MonedaOrigen", "visaTID", "PROCESADA", "MENSAJE", "TIPOAUTORIZACION", "OBSERVACION", "FeeMambu", "FILENAME", "ROWINFILE", "DE12", "DE48", "CUPON", "MOVIMTIPO",
           ],
           'table-3': [
               "ERRORCODE", "ERRORSOURCE", "ERRORREASON" // columnas a ocultar en la tercera tabla
@@ -466,6 +462,14 @@
               table.classList.add('table-3');
           }
       });
+  
+      // Cambiar los títulos de las tablas
+      const tableTitles = tempContainer.querySelectorAll('.table-title');
+      if (tableTitles.length >= 3) {
+          tableTitles[0].innerText = 'Datos de Presentación';
+          tableTitles[1].innerText = 'Datos de Autorización';
+          tableTitles[2].innerText = 'Datos de Interfaz Mambu';
+      }
   
       // Obtener la fecha actual en el formato YYYYMMDD
       const currentDate = new Date();
@@ -616,6 +620,7 @@
       URL.revokeObjectURL(url);
   }
   
+   
     </script>
   </body>
 </html>
