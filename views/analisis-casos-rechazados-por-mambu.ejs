@@ -400,8 +400,7 @@
         anulacionesTable.appendChild(tableContainer);
     }
     
-      
-       function downloadReport() {
+    function downloadReport() {
       const containerTables = document.getElementById("containerTables");
       const anulacionesTable = document.getElementById("anulacionesTable");
       const reportContent = containerTables.innerHTML + anulacionesTable.innerHTML;
@@ -415,28 +414,27 @@
           'table-1': [
               "PROCESADA", "MENSAJE", "TIPOAUTORIZACION", "OBSERVACION", "FILENAME", "DE12", "DE48", "MOVIMID", "MOVIMTIPO", "ROWINFILE", "FeeMambu", "MAMBULOGID", "RECALLID",
           ],
-        'table-2': [
-    "AUTOID", "TIPOAUTO", "CONSUAUTOCODI", "FORZADA_MAMBU",
-    "A_MAMBU", "RELA_OK", "ONL_OK", "AUTOFORZADA", "STATUSMAMBU",
-    "MAMBULOGID", "RECALLID", "Bin", "CuentaExterna", "MontoImpactado",
-    "FEEMAMBU", "MonedaOrigen", "visaTID", "PROCESADA", "MENSAJE", "TIPOAUTORIZACION", "OBSERVACION", "FeeMambu", "FILENAME", "ROWINFILE", "DE12", "DE48", "CUPON", "MOVIMTIPO",
-],
-
+          'table-2': [
+              "AUTOID", "TIPOAUTO", "CONSUAUTOCODI", "FORZADA_MAMBU",
+              "A_MAMBU", "RELA_OK", "ONL_OK", "AUTOFORZADA", "STATUSMAMBU",
+              "MAMBULOGID", "RECALLID", "Bin", "CuentaExterna", "MontoImpactado",
+              "FEEMAMBU", "MonedaOrigen", "visaTID", "PROCESADA", "MENSAJE", "TIPOAUTORIZACION", "OBSERVACION", "FeeMambu", "FILENAME", "ROWINFILE", "DE12", "DE48", "CUPON", "MOVIMTIPO",
+          ],
           'table-3': [
-              "ERRORCODE", "ERRORSOURCE", "ERRORREASON" // columnas a ocultar en la tercera tabla
+              "ERRORCODE", "ERRORSOURCE", "ERRORREASON"
           ]
       };
   
       // Iterar sobre todas las tablas y ocultar las columnas específicas
       const tables = tempContainer.querySelectorAll('table');
-      tables.forEach((table, index) => {
+      tables.forEach((table, tableIndex) => {
           let tableClass;
   
-          if (index === 0) {
+          if (tableIndex % 3 === 0) {
               tableClass = 'table-2';
-          } else if (index === 1) {
+          } else if (tableIndex % 3 === 1) {
               tableClass = 'table-1';
-          } else if (index === 2) {
+          } else if (tableIndex % 3 === 2) {
               tableClass = 'table-3';
           }
   
@@ -446,31 +444,35 @@
               const headerCells = table.querySelectorAll('th');
               const rows = table.querySelectorAll('tr');
   
-              headerCells.forEach((cell, index) => {
+              headerCells.forEach((cell, cellIndex) => {
                   if (headers.includes(cell.innerText.trim())) {
                       cell.style.display = 'none';
                       rows.forEach(row => {
                           const cells = row.querySelectorAll('td');
-                          if (cells[index]) {
-                              cells[index].style.display = 'none';
+                          if (cells[cellIndex]) {
+                              cells[cellIndex].style.display = 'none';
                           }
                       });
                   }
               });
           }
   
-          if (index === 2) {
+          if (tableIndex % 3 === 2) {
               table.classList.add('table-3');
           }
       });
   
       // Cambiar los títulos de las tablas
       const tableTitles = tempContainer.querySelectorAll('.table-title');
-      if (tableTitles.length >= 3) {
-          tableTitles[0].innerText = 'Datos de Presentación';
-          tableTitles[1].innerText = 'Datos de Autorización';
-          tableTitles[2].innerText = 'Datos de Interfaz Mambu';
-      }
+      tableTitles.forEach((title, index) => {
+          if (index % 3 === 0) {
+              title.innerText = 'Datos de Presentación';
+          } else if (index % 3 === 1) {
+              title.innerText = 'Datos de Autorización';
+          } else if (index % 3 === 2) {
+              title.innerText = 'Datos de Interfaz Mambu';
+          }
+      });
   
       // Obtener la fecha actual en el formato YYYYMMDD
       const currentDate = new Date();
@@ -484,8 +486,8 @@
       });
   
       // Incluir el CSS y el contenido del reporte
-      const fullReport =
-          `<!DOCTYPE html>
+      const fullReport = `
+          <!DOCTYPE html>
           <html lang="es">
           <head>
               <meta charset="UTF-8">
@@ -620,8 +622,6 @@
       a.click();
       URL.revokeObjectURL(url);
   }
-  
-   
     </script>
   </body>
 </html>
