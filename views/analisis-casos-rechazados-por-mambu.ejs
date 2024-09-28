@@ -400,7 +400,7 @@
         anulacionesTable.appendChild(tableContainer);
     }
     
-    function downloadReport() {
+       function downloadReport() {
       const containerTables = document.getElementById("containerTables");
       const anulacionesTable = document.getElementById("anulacionesTable");
       const reportContent = containerTables.innerHTML + anulacionesTable.innerHTML;
@@ -473,6 +473,12 @@
               title.innerText = 'Datos de Interfaz Mambu';
           }
       });
+  
+      // Asegúrate de que el título de la tabla de anulaciones no se sobrescriba
+      const anulacionesTitle = tempContainer.querySelectorAll('.table-title'); // Selecciona todos los títulos
+      if (anulacionesTitle.length > 0) {
+          anulacionesTitle[anulacionesTitle.length - 1].innerText = 'Tabla de evidencia de anulaciones / confirmaciones manual'; // Restablece el título correcto
+      }
   
       // Obtener la fecha actual en el formato YYYYMMDD
       const currentDate = new Date();
